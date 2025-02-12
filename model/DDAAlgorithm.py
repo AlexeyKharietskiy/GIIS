@@ -1,5 +1,5 @@
-from Algorithm import Algorithm
-from Dot import Dot
+from model.Algorithm import Algorithm
+from model.Dot import Dot
 
 class DDAAlgorithm(Algorithm):
     def compute_points(self, start: Dot, end: Dot):
