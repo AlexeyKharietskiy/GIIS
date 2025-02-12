@@ -5,6 +5,8 @@ class DDAAlgorithm(Algorithm):
     def compute_points(self, start: Dot, end: Dot):
         dot_list = []
         length = max(abs(start.x - end.x), abs(start.y - end.y))
+        if length == 0:
+            return[start]
         dx = (end.x - start.x)/ length
         dy = (end.y - start.y)/ length
         x = start.x + 0.5 * self.sign(dx)
