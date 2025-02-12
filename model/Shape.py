@@ -5,5 +5,6 @@ class Shape(ABC):
         self.dot_list = []
         self.algorithm_dict = {}
 
+    @abstractmethod
     def draw(self, algorithm):
         pass
