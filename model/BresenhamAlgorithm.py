@@ -20,8 +20,3 @@ class BresenhamAlgorithm(Algorithm):
             i += 1
             dot_list.append(Dot(x,y))
         return dot_list
-
-a = BresenhamAlgorithm()
-b = a.compute_points(Dot(0,0), Dot(9,4))
-for i in b :
-    print(f"{i.x} {i.y}")

@@ -37,8 +37,3 @@ class WuAlgorithm(Algorithm):
             dot.x, dot.y = dot.y, dot.x
         return dot
 
-
-a = WuAlgorithm()
-b = a.compute_points(Dot(0,0), Dot(9,4))
-for i in b :
-    print(f"{i.x} {i.y} {i.intensity}")
