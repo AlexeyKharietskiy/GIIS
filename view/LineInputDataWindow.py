@@ -9,7 +9,7 @@ class LineInputDataWindow(InputDataWindow):
         self.root.resizable(False, False)
         self.root.title("Ввод нужных данных")
         self.controller = LineController(algorithm)
-        self.debug_mode = tk.BooleanVar()
+        self.debug_mode = False
 
         self.create_widgets()
 
@@ -35,12 +35,16 @@ class LineInputDataWindow(InputDataWindow):
 
         frame_options = tk.LabelFrame(self.root, text="Настройки", padx=10, pady=10)
         frame_options.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
-        tk.Checkbutton(frame_options, text="Режим отладки", variable=self.debug_mode).grid(row=0, column=0, padx=5,
+        tk.Checkbutton(frame_options, text="Режим отладки", command=self.reverse_debug).grid(row=0, column=0, padx=5,
                                                                                            pady=5)
 
         tk.Button(self.root, text="Построить отрезок", command=self.show_line).grid(row=2, column=0,
                                                                                                  columnspan=2, padx=10,
                                                                                                  pady=10, sticky="ew")
+
+
+    def reverse_debug(self):
+        self.debug_mode = not self.debug_mode
 
     def show_line(self):
         try:
@@ -48,7 +52,7 @@ class LineInputDataWindow(InputDataWindow):
             y1 = int(self.entry_y1.get())
             x2 = int(self.entry_x2.get())
             y2 = int(self.entry_y2.get())
-            self.controller.run_output_window((x1,y1), (x2,y2), self.debug_mode.get())
+            self.controller.run_output_window((x1,y1), (x2,y2), self.debug_mode)
             self.root.destroy()
         except ValueError:
             messagebox.showerror("Ошибка", "Пожалуйста, введите корректные числовые значения.")
