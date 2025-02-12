@@ -1,8 +1,4 @@
-from Shape import Shape
-from DDAAlgorithm import DDAAlgorithm
-from BresenhamAlgorithm import BresenhamAlgorithm
-from WuAlgorithm import WuAlgorithm
-from Dot import Dot
+from model.Shape import Shape
 
 
 class Line(Shape):
