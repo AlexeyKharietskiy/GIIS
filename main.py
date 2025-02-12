@@ -1,7 +1,7 @@
-from view.GraficEditor import GraphicEditor
-import tkinter as tk
+from view.MainWindow import MainWindow
+from controller.MainController import MainController
+
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = GraphicEditor(root)
-    root.mainloop()
+    app = MainWindow()
+    app.run()
