@@ -1,4 +1,4 @@
-from model.Algorithm import Algorithm
+from model.Algorithms.Algorithm import Algorithm
 from model.Dot import Dot
 
 class CircleBresenhamAlgorithm(Algorithm):

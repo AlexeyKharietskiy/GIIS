@@ -1,4 +1,4 @@
-from model.Algorithm import Algorithm
+from model.Algorithms.Algorithm import Algorithm
 from model.Dot import Dot
 
 class BresenhamEllipseAlgorithm(Algorithm):
@@ -10,8 +10,6 @@ class BresenhamEllipseAlgorithm(Algorithm):
         b_squared = b * b
         two_a_squared = 2 * a_squared
         two_b_squared = 2 * b_squared
-        four_a_squared = 4 * a_squared
-        four_b_squared = 4 * b_squared
 
         # Initial decision parameter for region 1
         d1 = b_squared - a_squared * b + 0.25 * a_squared
