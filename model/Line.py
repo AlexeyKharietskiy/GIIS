@@ -9,3 +9,4 @@ class Line(Shape):
 
     def draw(self, algorithm):
         self.dot_list = algorithm.compute_points(self.start, self.end)
+        return self.dot_list
