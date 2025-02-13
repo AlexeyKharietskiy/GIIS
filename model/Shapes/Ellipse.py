@@ -1,7 +1,7 @@
 from model.Shapes.Shape import Shape
 
 
-class Circle(Shape):
+class Ellipse(Shape):
     def __init__(self, center_dot, a, b):
         super().__init__()
         self.center = center_dot
