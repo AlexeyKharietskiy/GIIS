@@ -7,6 +7,5 @@ class Line(Shape):
         self.start = start_dot
         self.end = end_dot
 
-    def run_algorithm(self, algorithm):
+    def draw_dots(self, algorithm):
         self.dot_list = algorithm.compute_points(self.start, self.end)
-        return self.dot_list
