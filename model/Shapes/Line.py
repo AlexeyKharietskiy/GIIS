@@ -1,4 +1,4 @@
-from model.Shape import Shape
+from model.Shapes.Shape import Shape
 
 
 class Line(Shape):
@@ -7,6 +7,6 @@ class Line(Shape):
         self.start = start_dot
         self.end = end_dot
 
-    def draw(self, algorithm):
+    def run_algorithm(self, algorithm):
         self.dot_list = algorithm.compute_points(self.start, self.end)
         return self.dot_list

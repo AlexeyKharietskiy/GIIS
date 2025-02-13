@@ -6,5 +6,5 @@ class Shape(ABC):
         self.algorithm_dict = {}
 
     @abstractmethod
-    def draw(self, algorithm):
+    def run_algorithm(self, algorithm):
         pass

@@ -1,5 +1,4 @@
 from view.MainWindow import MainWindow
-from controller.MainController import MainController
 
 
 if __name__ == "__main__":
