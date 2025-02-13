@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from controller.EllipseController import EllipseController
 
-class LineInputDataWindow:
+class EllipseInputWindow:
     def __init__(self, algorithm):
         self.root = tk.Tk()
         self.root.resizable(False, False)
