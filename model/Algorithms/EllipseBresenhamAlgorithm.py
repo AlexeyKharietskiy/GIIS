@@ -1,7 +1,7 @@
 from model.Algorithms.Algorithm import Algorithm
 from model.Dot import Dot
 
-class BresenhamEllipseAlgorithm(Algorithm):
+class EllipseBresenhamAlgorithm(Algorithm):
     def compute_points(self, center, a, b):
         dot_list = []
         x = 0

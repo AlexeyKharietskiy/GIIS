@@ -1,7 +1,7 @@
 from model.Algorithms.Algorithm import Algorithm
 from model.Dot import Dot
 
-class BresenhamHyperbolaAlgorithm(Algorithm):
+class HyperbolaBresenhamAlgorithm(Algorithm):
     def compute_points(self, center: Dot, a: int, b: int):
         dot_list = []
         x = a  # Начинаем с вершины гиперболы (a, 0)

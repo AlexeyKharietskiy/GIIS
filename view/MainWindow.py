@@ -59,7 +59,7 @@ class MainWindow:
         self.controller.run_ellipse_input_window(self.algorithm.get())
 
     def input_hyperbola_data(self):
-        self.controller.run_line_input_window(self.algorithm.get())
+        self.controller.run_hyperbola_input_window(self.algorithm.get())
 
     def input_parabola_data(self):
         self.controller.run_line_input_window(self.algorithm.get())
