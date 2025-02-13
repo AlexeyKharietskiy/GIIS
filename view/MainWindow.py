@@ -19,14 +19,14 @@ class MainWindow:
         self.line_menu.add_radiobutton(label="Алгоритм ЦДА", variable=self.algorithm, command=self.input_line_data)
         self.line_menu.add_radiobutton(label="Алгоритм Брезенхема", variable=self.algorithm, command=self.input_line_data)
         self.line_menu.add_radiobutton(label="Алгоритм Ву", variable=self.algorithm, command=self.input_line_data)
-        self.menu_bar.add_cascade(label="Отрезки", menu=self.line_menu, command=self.pr_men)
+        self.menu_bar.add_cascade(label="Отрезки", menu=self.line_menu)
 
         # Меню для линий второго порядка
         self.second_order_line_menu = Menu(self.menu_bar, tearoff=0)
         self.second_order_line_menu.add_radiobutton(label="Окружность",variable=self.algorithm, command=self.input_circle_data)
-        self.second_order_line_menu.add_radiobutton(label="Эллипс", variable=self.algorithm,command=self.input_line_data)
-        self.second_order_line_menu.add_radiobutton(label="Гипербола", variable=self.algorithm,command=self.input_line_data)
-        self.second_order_line_menu.add_radiobutton(label="Парабола", variable=self.algorithm ,command=self.input_line_data)
+        self.second_order_line_menu.add_radiobutton(label="Эллипс", variable=self.algorithm,command=self.input_ellipse_data)
+        self.second_order_line_menu.add_radiobutton(label="Гипербола", variable=self.algorithm,command=self.input_hyperbola_data)
+        self.second_order_line_menu.add_radiobutton(label="Парабола", variable=self.algorithm ,command=self.input_parabola_data)
         self.menu_bar.add_cascade(label="Линии второго порядка", menu=self.second_order_line_menu)
 
         # Холст для рисования
@@ -56,13 +56,10 @@ class MainWindow:
         self.controller.run_circle_input_window(self.algorithm.get())
 
     def input_ellipse_data(self):
-        self.controller.run_line_input_window(self.algorithm.get())
+        self.controller.run_ellipse_input_window(self.algorithm.get())
 
     def input_hyperbola_data(self):
         self.controller.run_line_input_window(self.algorithm.get())
 
     def input_parabola_data(self):
         self.controller.run_line_input_window(self.algorithm.get())
-
-    def pr_men(self):
-        print('aa')
