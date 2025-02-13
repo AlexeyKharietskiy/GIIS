@@ -1,7 +1,7 @@
 from view.ShapeDrawWindow import ShapeDrawWindow
 from model.Dot import Dot
 from model.Algorithm import Algorithm
-from model.Line import Line
+from model.Shapes.Line import Line
 
 
 class LineController:
@@ -12,7 +12,8 @@ class LineController:
 
     def run_output_window(self, start, end, debug_mode):
         self.line = Line(Dot(start[0], start[1]), Dot(end[0], end[1]))
-        self.output_window = ShapeDrawWindow(self.line.draw(self.algorithm), debug_mode)
+        dot_list = self.line.run_algorithm(self.algorithm)
+        self.output_window = ShapeDrawWindow(dot_list, debug_mode)
         self.output_window.show_shape()
 
 
