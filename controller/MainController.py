@@ -1,8 +1,8 @@
 from view.InputWindows.LineInputDataWindow import LineInputDataWindow
-from model.WuAlgorithm import WuAlgorithm
-from model.DDAAlgorithm import DDAAlgorithm
-from model.BresenhamAlgorithm import BresenhamAlgorithm
-from model.CircleBresenhamAlgorithm import CircleBresenhamAlgorithm
+from model.Algorithms.WuAlgorithm import WuAlgorithm
+from model.Algorithms.DDAAlgorithm import DDAAlgorithm
+from model.Algorithms.BresenhamAlgorithm import BresenhamAlgorithm
+from model.Algorithms.CircleBresenhamAlgorithm import CircleBresenhamAlgorithm
 from view.InputWindows.CircleInputWindow import CircleInputWindow
 import tkinter
 

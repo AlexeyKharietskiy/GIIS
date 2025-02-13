@@ -1,6 +1,6 @@
 from view.ShapeDrawWindow import ShapeDrawWindow
 from model.Dot import Dot
-from model.Algorithm import Algorithm
+from model.Algorithms.Algorithm import Algorithm
 from model.Shapes.Circle import Circle
 
 
