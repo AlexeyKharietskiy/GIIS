@@ -11,9 +11,9 @@ class LineInputDataWindow(InputDataWindow):
         self.controller = LineController(algorithm)
         self.debug_mode = False
 
-        self.create_widgets()
+        self.create_widgets_circle()
 
-    def create_widgets(self):
+    def create_widgets_line(self):
 
         frame_point1 = tk.LabelFrame(self.root, text="Точка 1", padx=10, pady=10)
         frame_point1.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
@@ -42,6 +42,31 @@ class LineInputDataWindow(InputDataWindow):
                                                                                                  columnspan=2, padx=10,
                                                                                                  pady=10, sticky="ew")
 
+    def create_widgets_circle(self):
+
+        frame_point1 = tk.LabelFrame(self.root, text="Центр окружности", padx=10, pady=10)
+        frame_point1.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+        tk.Label(frame_point1, text="Xc:").grid(row=0, column=0, padx=5, pady=5)
+        self.entry_x1 = tk.Entry(frame_point1)
+        self.entry_x1.grid(row=0, column=1, padx=5, pady=5)
+        tk.Label(frame_point1, text="Yc:").grid(row=1, column=0, padx=5, pady=5)
+        self.entry_y1 = tk.Entry(frame_point1)
+        self.entry_y1.grid(row=1, column=1, padx=5, pady=5)
+
+        frame_point2 = tk.LabelFrame(self.root, text="Радиус", padx=10, pady=10)
+        frame_point2.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+        tk.Label(frame_point2, text="R:").grid(row=0, column=0, padx=5, pady=5)
+        self.entry_x2 = tk.Entry(frame_point2)
+        self.entry_x2.grid(row=0, column=1, padx=5, pady=5)
+
+        frame_options = tk.LabelFrame(self.root, text="Настройки", padx=10, pady=10)
+        frame_options.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+        tk.Checkbutton(frame_options, text="Режим отладки", command=self.reverse_debug).grid(row=0, column=0, padx=5,
+                                                                                             pady=5)
+
+        tk.Button(self.root, text="Построить окружность", command=self.show_line).grid(row=2, column=0,
+                                                                                    columnspan=2, padx=10,
+                                                                                    pady=10, sticky="ew")
 
     def reverse_debug(self):
         self.debug_mode = not self.debug_mode
