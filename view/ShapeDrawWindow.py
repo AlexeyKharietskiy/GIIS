@@ -45,7 +45,7 @@ class ShapeDrawWindow:
 
     def on_key(self, event):
         if event.key == ' ':
-            if self.current_index < len(self.shape) - 1:
+            if self.current_index < len(self.shape.dot_list) - 1:
                 self.current_index += 1
                 self.create_image(self.current_index)
             else:
