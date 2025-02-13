@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 class ShapeDrawWindow:
-    def __init__(self, dot_list, debug_mode):
-        self.dot_list = dot_list
+    def __init__(self, shape, debug_mode):
+        self.shape = shape
         self.debug_mode = debug_mode
         self.current_index = -1
         self.fig, self.ax = plt.subplots(figsize=(6, 6))
@@ -16,7 +16,7 @@ class ShapeDrawWindow:
         self.restore_window()
 
         if not self.debug_mode:
-            self.create_image(len(self.dot_list) - 1)
+            self.create_image(len(self.shape.dot_list) - 1)
         else:
             self.fig.canvas.mpl_connect('key_press_event', lambda event: self.on_key(event))
 
@@ -25,7 +25,7 @@ class ShapeDrawWindow:
         image = np.ones((self.size, self.size))
 
         for i in range(current_index + 1):
-            dot = self.dot_list[i]
+            dot = self.shape.dot_list[i]
             if 0 <= dot.x < self.size and 0 <= dot.y < self.size:
                 image[self.size-1 - dot.y, dot.x] = 1 - dot.intensity
 
@@ -45,7 +45,7 @@ class ShapeDrawWindow:
 
     def on_key(self, event):
         if event.key == ' ':
-            if self.current_index < len(self.dot_list) - 1:
+            if self.current_index < len(self.shape) - 1:
                 self.current_index += 1
                 self.create_image(self.current_index)
             else:
