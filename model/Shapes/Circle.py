@@ -7,6 +7,5 @@ class Circle(Shape):
         self.center = center_dot
         self.radius = radius
 
-    def run_algorithm(self, algorithm):
+    def draw_dots(self, algorithm):
         self.dot_list = algorithm.compute_points(self.center, self.radius)
-        return self.dot_list
