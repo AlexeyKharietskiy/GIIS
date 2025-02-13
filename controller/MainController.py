@@ -1,9 +1,10 @@
-from view.InputWindows.LineInputDataWindow import LineInputDataWindow
+from view.InputWindows.LineInputWindow import LineInputWindow
+from view.InputWindows.CircleInputWindow import CircleInputWindow
+from view.InputWindows.EllipseInputWindow import EllipseInputWindow
 from model.Algorithms.WuAlgorithm import WuAlgorithm
 from model.Algorithms.DDAAlgorithm import DDAAlgorithm
 from model.Algorithms.BresenhamAlgorithm import BresenhamAlgorithm
 from model.Algorithms.CircleBresenhamAlgorithm import CircleBresenhamAlgorithm
-from view.InputWindows.CircleInputWindow import CircleInputWindow
 import tkinter
 
 
@@ -19,10 +20,15 @@ class MainController:
 
     def run_line_input_window(self, algorithm):
         self.check_window()
-        self.input_data_window = LineInputDataWindow(self.algorithm_dict[algorithm])
+        self.input_data_window = LineInputWindow(self.algorithm_dict[algorithm])
         self.input_data_window.run()
 
     def run_circle_input_window(self, algorithm):
+        self.check_window()
+        self.input_data_window = CircleInputWindow(self.algorithm_dict[algorithm])
+        self.input_data_window.run()
+
+    def run_ellipse_input_window(self, algorithm):
         self.check_window()
         self.input_data_window = CircleInputWindow(self.algorithm_dict[algorithm])
         self.input_data_window.run()
