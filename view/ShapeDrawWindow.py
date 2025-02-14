@@ -8,16 +8,25 @@ class ShapeDrawWindow:
         self.current_index = -1
         self.fig, self.ax = plt.subplots(figsize=(6, 6))
         self.size = size
+        self.set_fullscreen()
 
         self.setup_window()
 
-    def setup_window(self):
+    @staticmethod
+    def set_fullscreen():
+        """Устанавливает окно на весь экран."""
+        manager = plt.get_current_fig_manager()
+        manager.window.state('zoomed')
+
         """Настройка окна и сетки."""
+
+    def setup_window(self):
         self.restore_window()
 
         if not self.debug_mode:
             self.create_image(len(self.shape.dot_list) - 1)
         else:
+            self.create_image(self.current_index)
             self.fig.canvas.mpl_connect('key_press_event', lambda event: self.on_key(event))
 
     def create_image(self, current_index):
@@ -41,6 +50,9 @@ class ShapeDrawWindow:
         self.ax.grid(True, which='both', color='black', linestyle='--', linewidth=0.5)
         self.ax.set_xticks(np.arange(0, self.size+1, 1))
         self.ax.set_yticks(np.arange(0, self.size+1, 1))
+        self.ax.set_xticklabels([])  # Убираем метки на оси X
+        self.ax.set_yticklabels([])  # Убираем метки на оси Y
+
         self.ax.tick_params(axis='both', which='major', labelsize=6)
 
     def on_key(self, event):
@@ -49,8 +61,7 @@ class ShapeDrawWindow:
                 self.current_index += 1
                 self.create_image(self.current_index)
             else:
-                print("All pixels have been drawn.")
-
+                self.ax.set_title("All pixels displayed")
     @staticmethod
     def show_shape():
         plt.tight_layout()
