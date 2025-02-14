@@ -1,7 +1,7 @@
 from model.Algorithms.Algorithm import Algorithm
 from model.Dot import Dot
 
-class BresenhamParabolaAlgorithm(Algorithm):
+class ParabolaBresenhamAlgorithm(Algorithm):
     def compute_points(self, vertex: Dot, a: int):
         dot_list = []
         x = 0
