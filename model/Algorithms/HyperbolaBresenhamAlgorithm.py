@@ -1,28 +1,33 @@
 from model.Algorithms.Algorithm import Algorithm
 from model.Dot import Dot
 
+
 class HyperbolaBresenhamAlgorithm(Algorithm):
     def compute_points(self, center: Dot, a: int, b: int):
         dot_list = []
-        x = a  # Начинаем с вершины гиперболы (a, 0)
+        x = abs(a)  # Начинаем с вершины гиперболы (a, 0)
         y = 0
-        a_squared = a * a
-        b_squared = b * b
-        two_a_squared = 2 * a_squared
-        two_b_squared = 2 * b_squared
+        a = a * a
+        b = b * b
 
         # Начальное значение ошибки
-        error = b_squared * (2 * x + 1) - a_squared
+        error = b * (2 * x + 1) - a
+        bx = x
+        dx = 5
 
         # Построение точек в первом квадранте
-        while x <= center.x + a * 2:  # Ограничиваем область построения
+        while x- bx <= dx:  # Ограничиваем область построения
             dot_list.extend(self.get_hyperbola_points(center, Dot(x, y)))
 
-            if error >= 0:
-                y += 1
-                error -= two_a_squared * y
-            x += 1
-            error += b_squared * (2 * x + 1)
+            f1 =  (error <= 0 or 2 * error - b * (2 * x + 1) <= 0)
+            f2 = (error <= 0 or 2 * error - a * (2 * y + 1) > 0)
+            if f1:
+                x= x + 1
+                error += b * (2 * x + 1)
+
+            if f2:
+                y=y+1
+                error -= a * (2 * y - 1)
 
         return dot_list
 
