@@ -13,7 +13,6 @@ class Line(Shape):
             'Алгоритм ЦДА': DDAAlgorithm(),
             'Алгоритм Брезенхема': BresenhamAlgorithm()
         }
-        self.algorithm = None
 
     def draw_dots(self, algorithm):
         self.algorithm = self.algorithm_dict[algorithm]

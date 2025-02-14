@@ -12,4 +12,5 @@ class Hyperbola(Shape):
         }
 
     def draw_dots(self, algorithm):
-        self.dot_list = algorithm.compute_points(self.center, self.a, self.b)
+        self.algorithm = self.algorithm_dict[algorithm]
+        self.dot_list = self.algorithm.compute_points(self.center, self.a, self.b)
