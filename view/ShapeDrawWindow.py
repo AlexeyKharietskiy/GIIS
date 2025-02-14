@@ -2,12 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 class ShapeDrawWindow:
-    def __init__(self, shape, debug_mode):
+    def __init__(self, shape, debug_mode, size=30):
         self.shape = shape
         self.debug_mode = debug_mode
         self.current_index = -1
         self.fig, self.ax = plt.subplots(figsize=(6, 6))
-        self.size = 30
+        self.size = size
 
         self.setup_window()
 
