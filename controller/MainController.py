@@ -2,45 +2,31 @@ from view.InputWindows.LineInputWindow import LineInputWindow
 from view.InputWindows.CircleInputWindow import CircleInputWindow
 from view.InputWindows.EllipseInputWindow import EllipseInputWindow
 from view.InputWindows.HyperbolaInputWindow import HyperbolaInputWindow
-from model.Algorithms.WuAlgorithm import WuAlgorithm
-from model.Algorithms.DDAAlgorithm import DDAAlgorithm
-from model.Algorithms.BresenhamAlgorithm import BresenhamAlgorithm
-from model.Algorithms.CircleBresenhamAlgorithm import CircleBresenhamAlgorithm
-from model.Algorithms.EllipseBresenhamAlgorithm import EllipseBresenhamAlgorithm
-from model.Algorithms.HyperbolaBresenhamAlgorithm import HyperbolaBresenhamAlgorithm
 import tkinter
 
 
 class MainController:
     def __init__(self):
         self.input_data_window = None
-        self.algorithm_dict = {
-            'Алгоритм Ву': WuAlgorithm(),
-            'Алгоритм ЦДА': DDAAlgorithm(),
-            'Алгоритм Брезенхема': BresenhamAlgorithm(),
-            'Окружность': CircleBresenhamAlgorithm(),
-            'Эллипс': EllipseBresenhamAlgorithm(),
-            'Гипербола': HyperbolaBresenhamAlgorithm()
-        }
 
     def run_line_input_window(self, algorithm):
         self.check_window()
-        self.input_data_window = LineInputWindow(self.algorithm_dict[algorithm])
+        self.input_data_window = LineInputWindow(algorithm)
         self.input_data_window.run()
 
     def run_circle_input_window(self, algorithm):
         self.check_window()
-        self.input_data_window = CircleInputWindow(self.algorithm_dict[algorithm])
+        self.input_data_window = CircleInputWindow(algorithm)
         self.input_data_window.run()
 
     def run_ellipse_input_window(self, algorithm):
         self.check_window()
-        self.input_data_window = EllipseInputWindow(self.algorithm_dict[algorithm])
+        self.input_data_window = EllipseInputWindow(algorithm)
         self.input_data_window.run()
 
     def run_hyperbola_input_window(self, algorithm):
         self.check_window()
-        self.input_data_window = HyperbolaInputWindow(self.algorithm_dict[algorithm])
+        self.input_data_window = HyperbolaInputWindow(algorithm)
         self.input_data_window.run()
 
     def check_window(self):

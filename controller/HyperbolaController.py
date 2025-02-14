@@ -1,11 +1,10 @@
 from view.ShapeDrawWindow import ShapeDrawWindow
 from model.Dot import Dot
-from model.Algorithms.Algorithm import Algorithm
 from model.Shapes.Hyperbola import Hyperbola
 
 
 class HyperbolaController:
-    def __init__(self, algorithm: Algorithm):
+    def __init__(self, algorithm):
         self.output_window = None
         self.algorithm = algorithm
         self.shape = None
