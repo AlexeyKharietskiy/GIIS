@@ -3,7 +3,7 @@ from model.Dot import Dot
 from model.Shapes.Parabola import Parabola
 
 
-class LineController:
+class ParabolaController:
     def __init__(self, algorithm):
         self.output_window = None
         self.algorithm = algorithm
