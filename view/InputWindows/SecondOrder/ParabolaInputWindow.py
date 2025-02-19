@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from controller.ParabolaController import ParabolaController
-from view.InputWindows.InputWindow import InputWindow
+from controller.SecondOrder.ParabolaController import ParabolaController
 
 
 class ParabolaInputWindow:

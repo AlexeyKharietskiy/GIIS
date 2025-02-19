@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from controller.EllipseController import EllipseController
+from controller.SecondOrder.EllipseController import EllipseController
 from view.InputWindows.InputWindow import InputWindow
 
 

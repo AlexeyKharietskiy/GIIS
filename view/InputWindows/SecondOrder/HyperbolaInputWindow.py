@@ -1,7 +1,7 @@
 import tkinter as tk
 from view.InputWindows.InputWindow import InputWindow
 from tkinter import messagebox
-from controller.HyperbolaController import HyperbolaController
+from controller.SecondOrder.HyperbolaController import HyperbolaController
 
 class HyperbolaInputWindow(InputWindow):
     def __init__(self, algorithm):

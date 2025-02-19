@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from controller.CircleController import CircleController
+from controller.SecondOrder.CircleController import CircleController
 from view.InputWindows.InputWindow import InputWindow
 
 class CircleInputWindow(InputWindow):

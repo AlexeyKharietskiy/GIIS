@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from view.InputWindows.InputWindow import InputWindow
 from view.InputWindows.Curve.InputDerivativeWindow import InputDerivativeWindow
-from controller.CurveController import CurveController
+from controller.Curve.CurveController import CurveController
 
 
 class CurveInputWindow(InputWindow):

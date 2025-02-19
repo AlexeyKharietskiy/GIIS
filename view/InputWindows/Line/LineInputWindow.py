@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from controller.LineController import LineController
+from controller.Line.LineController import LineController
 from view.InputWindows.InputWindow import InputWindow
 
 
