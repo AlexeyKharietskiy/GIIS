@@ -1,5 +1,5 @@
 from model.Shapes.Shape import Shape
-from model.Algorithms.BresenhamAlgorithm import BresenhamAlgorithm
+from model.Algorithms.LineBresenhamAlgorithm import BresenhamAlgorithm
 from model.Algorithms.DDAAlgorithm import DDAAlgorithm
 from model.Algorithms.WuAlgorithm import WuAlgorithm
 
