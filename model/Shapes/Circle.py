@@ -1,5 +1,5 @@
 from model.Shapes.Shape import Shape
-from model.Algorithms.CircleBresenhamAlgorithm import CircleBresenhamAlgorithm
+from model.Algorithms.SecondOrderAlgorithms.CircleBresenhamAlgorithm import CircleBresenhamAlgorithm
 
 
 class Circle(Shape):

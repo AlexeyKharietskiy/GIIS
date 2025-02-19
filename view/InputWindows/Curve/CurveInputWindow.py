@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 from view.InputWindows.InputWindow import InputWindow
-from view.InputWindows.InputDerivativeWindow import InputDerivativeWindow
+from view.InputWindows.Curve.InputDerivativeWindow import InputDerivativeWindow
 from controller.CurveController import CurveController
+
 
 class CurveInputWindow(InputWindow):
     def __init__(self, algorithm):
@@ -67,7 +68,6 @@ class CurveInputWindow(InputWindow):
                     del self.draw_stack[i:i + 2]
                 else:
                     i += 1
-        print(len(self.draw_stack))
 
 
     def __draw_segment(self, dot_list):
@@ -76,10 +76,10 @@ class CurveInputWindow(InputWindow):
             self.canvas.create_rectangle(point[0] - 1, point[1] - 1, point[0] + 1, point[1] + 1, fill="black")
 
     def adjust_points(self):
-        self.adjust_window = tk.Toplevel(self.root)
-        self.adjust_window.title("Корректировка точек")
+        adjust_window = tk.Toplevel(self.root)
+        adjust_window.title("Корректировка точек")
 
-        self.listbox = tk.Listbox(self.adjust_window, width=50, height=20)
+        self.listbox = tk.Listbox(adjust_window, width=50, height=20)
         self.listbox.pack(padx=10, pady=10)
 
         for idx, dot in enumerate(self.reference_dot_list):
@@ -91,8 +91,8 @@ class CurveInputWindow(InputWindow):
             if selected:
                 index = selected[0]
                 x, y, dx, dy = self.reference_dot_list[index]
-                dialog = InputDerivativeWindow(self.adjust_window)
-                self.adjust_window.wait_window(dialog)
+                dialog = InputDerivativeWindow(adjust_window)
+                adjust_window.wait_window(dialog)
 
                 if dialog.dx is not None and dialog.dy is not None:
                     self.reference_dot_list[index] = (x, y, dialog.dx, dialog.dy)

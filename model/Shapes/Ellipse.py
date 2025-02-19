@@ -1,5 +1,5 @@
 from model.Shapes.Shape import Shape
-from model.Algorithms.EllipseBresenhamAlgorithm import EllipseBresenhamAlgorithm
+from model.Algorithms.SecondOrderAlgorithms.EllipseBresenhamAlgorithm import EllipseBresenhamAlgorithm
 
 
 class Ellipse(Shape):

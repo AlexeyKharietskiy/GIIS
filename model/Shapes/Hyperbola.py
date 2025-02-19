@@ -1,5 +1,5 @@
 from model.Shapes.Shape import Shape
-from model.Algorithms.HyperbolaBresenhamAlgorithm import HyperbolaBresenhamAlgorithm
+from model.Algorithms.SecondOrderAlgorithms.HyperbolaBresenhamAlgorithm import HyperbolaBresenhamAlgorithm
 
 class Hyperbola(Shape):
     def __init__(self, center_dot, a, b):

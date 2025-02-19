@@ -1,5 +1,5 @@
 from model.Shapes.Shape import Shape
-from model.Algorithms.ParabolaBresenhamAlgorithm import ParabolaBresenhamAlgorithm
+from model.Algorithms.SecondOrderAlgorithms.ParabolaBresenhamAlgorithm import ParabolaBresenhamAlgorithm
 
 class Parabola(Shape):
     def __init__(self, center_dot, h):

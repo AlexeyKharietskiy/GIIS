@@ -1,7 +1,7 @@
 from model.Shapes.Shape import Shape
-from model.Algorithms.LineBresenhamAlgorithm import BresenhamAlgorithm
-from model.Algorithms.DDAAlgorithm import DDAAlgorithm
-from model.Algorithms.HermiteFormsAlgorithm import HermiteAlgorithm
+from model.Algorithms.LineAlgorithms.LineBresenhamAlgorithm import BresenhamAlgorithm
+from model.Algorithms.LineAlgorithms.DDAAlgorithm import DDAAlgorithm
+from model.Algorithms.CurveAlgorithms.HermiteFormsAlgorithm import HermiteAlgorithm
 
 class Curve(Shape):
     def __init__(self, reference_dot_list):

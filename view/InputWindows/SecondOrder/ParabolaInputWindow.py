@@ -1,36 +1,36 @@
 import tkinter as tk
 from tkinter import messagebox
-from controller.LineController import LineController
+from controller.ParabolaController import ParabolaController
+from view.InputWindows.InputWindow import InputWindow
 
-class LineInputWindow:
+
+class ParabolaInputWindow:
     def __init__(self, algorithm):
-        self.root = tk.Tk()
-        self.root.resizable(False, False)
+        super().__init__()
         self.root.title("Ввод нужных данных")
-        self.controller = LineController(algorithm)
+        self.controller = ParabolaController(algorithm)
         self.debug_mode = False
+        self.entry_x = None
+        self.entry_a = None
+        self.entry_y = None
+        self.create_widgets()
 
-        self.create_widgets_line()
+    def create_widgets(self):
 
-    def create_widgets_line(self):
-
-        frame_point1 = tk.LabelFrame(self.root, text="Точка 1", padx=10, pady=10)
+        frame_point1 = tk.LabelFrame(self.root, text="Вершина", padx=10, pady=10)
         frame_point1.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
-        tk.Label(frame_point1, text="X1:").grid(row=0, column=0, padx=5, pady=5)
-        self.entry_x1 = tk.Entry(frame_point1)
-        self.entry_x1.grid(row=0, column=1, padx=5, pady=5)
-        tk.Label(frame_point1, text="Y1:").grid(row=1, column=0, padx=5, pady=5)
-        self.entry_y1 = tk.Entry(frame_point1)
-        self.entry_y1.grid(row=1, column=1, padx=5, pady=5)
+        tk.Label(frame_point1, text="X:").grid(row=0, column=0, padx=5, pady=5)
+        self.entry_x = tk.Entry(frame_point1)
+        self.entry_x.grid(row=0, column=1, padx=5, pady=5)
+        tk.Label(frame_point1, text="Y:").grid(row=1, column=0, padx=5, pady=5)
+        self.entry_y = tk.Entry(frame_point1)
+        self.entry_y.grid(row=1, column=1, padx=5, pady=5)
 
-        frame_point2 = tk.LabelFrame(self.root, text="Точка 2", padx=10, pady=10)
+        frame_point2 = tk.LabelFrame(self.root, text="Высота параболы", padx=10, pady=10)
         frame_point2.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
-        tk.Label(frame_point2, text="X2:").grid(row=0, column=0, padx=5, pady=5)
-        self.entry_x2 = tk.Entry(frame_point2)
-        self.entry_x2.grid(row=0, column=1, padx=5, pady=5)
-        tk.Label(frame_point2, text="Y2:").grid(row=1, column=0, padx=5, pady=5)
-        self.entry_y2 = tk.Entry(frame_point2)
-        self.entry_y2.grid(row=1, column=1, padx=5, pady=5)
+        tk.Label(frame_point2, text="A:").grid(row=0, column=0, padx=5, pady=5)
+        self.entry_a = tk.Entry(frame_point2)
+        self.entry_a.grid(row=0, column=1, padx=5, pady=5)
 
         frame_options = tk.LabelFrame(self.root, text="Настройки", padx=10, pady=10)
         frame_options.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
@@ -46,11 +46,10 @@ class LineInputWindow:
 
     def show_line(self):
         try:
-            x1 = int(self.entry_x1.get())
-            y1 = int(self.entry_y1.get())
-            x2 = int(self.entry_x2.get())
-            y2 = int(self.entry_y2.get())
-            self.controller.run_output_window((x1,y1), (x2,y2), self.debug_mode)
+            x = int(self.entry_x.get())
+            y = int(self.entry_y.get())
+            a = int(self.entry_a.get())
+            self.controller.run_output_window((x,y), a, self.debug_mode)
             self.root.destroy()
         except ValueError:
             messagebox.showerror("Ошибка", "Пожалуйста, введите корректные числовые значения.")

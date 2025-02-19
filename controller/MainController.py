@@ -1,9 +1,9 @@
-from view.InputWindows.LineInputWindow import LineInputWindow
-from view.InputWindows.CircleInputWindow import CircleInputWindow
-from view.InputWindows.EllipseInputWindow import EllipseInputWindow
-from view.InputWindows.HyperbolaInputWindow import HyperbolaInputWindow
-from view.InputWindows.ParabolaInputWindow import ParabolaInputWindow
-from view.InputWindows.CurveInputWindow import CurveInputWindow
+from view.InputWindows.Line.LineInputWindow import LineInputWindow
+from view.InputWindows.SecondOrder.CircleInputWindow import CircleInputWindow
+from view.InputWindows.SecondOrder.EllipseInputWindow import EllipseInputWindow
+from view.InputWindows.SecondOrder.HyperbolaInputWindow import HyperbolaInputWindow
+from view.InputWindows.SecondOrder.ParabolaInputWindow import ParabolaInputWindow
+from view.InputWindows.Curve.CurveInputWindow import CurveInputWindow
 import tkinter
 
 

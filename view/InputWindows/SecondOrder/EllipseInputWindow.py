@@ -1,13 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox
-from controller.HyperbolaController import HyperbolaController
+from controller.EllipseController import EllipseController
+from view.InputWindows.InputWindow import InputWindow
 
-class HyperbolaInputWindow:
+
+class EllipseInputWindow(InputWindow):
     def __init__(self, algorithm):
-        self.root = tk.Tk()
-        self.root.resizable(False, False)
+        super().__init__()
         self.root.title("Ввод нужных данных")
-        self.controller = HyperbolaController(algorithm)
+        self.controller = EllipseController(algorithm)
         self.debug_mode = False
         self.entry_xc = None
         self.entry_a = None
@@ -27,7 +28,7 @@ class HyperbolaInputWindow:
         self.entry_yc = tk.Entry(frame_point1)
         self.entry_yc.grid(row=1, column=1, padx=5, pady=5)
 
-        frame_point2 = tk.LabelFrame(self.root, text="Характеристики гиперболы", padx=10, pady=10)
+        frame_point2 = tk.LabelFrame(self.root, text="Характеристики эллипса", padx=10, pady=10)
         frame_point2.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
         tk.Label(frame_point2, text="A:").grid(row=0, column=0, padx=5, pady=5)
         self.entry_a = tk.Entry(frame_point2)

@@ -1,7 +1,7 @@
 from model.Shapes.Shape import Shape
-from model.Algorithms.LineBresenhamAlgorithm import BresenhamAlgorithm
-from model.Algorithms.DDAAlgorithm import DDAAlgorithm
-from model.Algorithms.WuAlgorithm import WuAlgorithm
+from model.Algorithms.LineAlgorithms.LineBresenhamAlgorithm import BresenhamAlgorithm
+from model.Algorithms.LineAlgorithms.DDAAlgorithm import DDAAlgorithm
+from model.Algorithms.LineAlgorithms.WuAlgorithm import WuAlgorithm
 
 class Line(Shape):
     def __init__(self, start_dot, end_dot):

@@ -1,11 +1,11 @@
 import tkinter as tk
 from tkinter import messagebox
 from controller.CircleController import CircleController
+from view.InputWindows.InputWindow import InputWindow
 
-class CircleInputWindow:
+class CircleInputWindow(InputWindow):
     def __init__(self, algorithm):
-        self.root = tk.Tk()
-        self.root.resizable(False, False)
+        super().__init__()
         self.root.title("Ввод нужных данных")
         self.controller = CircleController(algorithm)
         self.debug_mode = False
