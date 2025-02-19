@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+
+from torch.utils.hipify.hipify_python import value
+
 from view.InputWindows.InputWindow import InputWindow
 from view.InputWindows.Curve.InputDerivativeWindow import InputDerivativeWindow
 from controller.Curve.CurveController import CurveController
@@ -10,7 +13,6 @@ class CurveInputWindow(InputWindow):
         super().__init__()
         self.root.focus_set()
         self.algorithm = algorithm
-
 
         self.root.title("Создание кривых")
         toolbar = ttk.Frame(self.root, style="TFrame")
@@ -25,7 +27,7 @@ class CurveInputWindow(InputWindow):
         adjust_button = ttk.Button(toolbar, text="Корректировка", command=self.adjust_points, style="TButton")
         adjust_button.pack(side=tk.RIGHT, padx=10)
 
-        self.join_mode_enabled = False
+        self.join_mode = False
         join_mode_check = ttk.Checkbutton(
             toolbar,
             text="Режим состыковки сегментов",
@@ -54,24 +56,12 @@ class CurveInputWindow(InputWindow):
             self.draw_stack.append((x, y, dialog.dx, dialog.dy))
             self.reference_dot_list.append((x, y, dialog.dx, dialog.dy))
 
-    def show_points(self):
-        if self.join_mode_enabled:
-            self.__draw_segment(self.draw_stack)
-            if len(self.draw_stack) >= 2:
-                del self.draw_stack[0: len(self.draw_stack) - 1]
-        else:
-            i = 0
-            while i < len(self.draw_stack):
-                if i + 2 <= len(self.draw_stack):
-                    dot_pair = self.draw_stack[i:i + 2]
-                    self.__draw_segment(dot_pair)
-                    del self.draw_stack[i:i + 2]
-                else:
-                    i += 1
+    def show_points(self, adjust_mode=False):
+        self.__draw_segment(self.draw_stack, adjust_mode)
 
 
-    def __draw_segment(self, dot_list):
-        point_list = self.controller.get_curve_point_list(dot_list)
+    def __draw_segment(self, dot_list, adjust_mode=False):
+        point_list = self.controller.get_curve_point_list(dot_list, self.join_mode, adjust_mode)
         for point in point_list:
             self.canvas.create_rectangle(point[0] - 1, point[1] - 1, point[0] + 1, point[1] + 1, fill="black")
 
@@ -113,7 +103,7 @@ class CurveInputWindow(InputWindow):
             self.listbox.insert(tk.END, f"Точка {idx}: ({x}, {y}), производные ({dx}, {dy})")
 
         self.draw_stack = self.reference_dot_list[0:len(self.reference_dot_list)]
-        self.show_points()
+        self.show_points(adjust_mode=True)
 
     def on_join_mode_toggle(self):
-        self.join_mode_enabled = not self.join_mode_enabled
+        self.join_mode = not self.join_mode

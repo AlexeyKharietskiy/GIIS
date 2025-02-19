@@ -1,18 +1,14 @@
-from model.Shapes.Shape import Shape
-from model.Algorithms.LineAlgorithms.LineBresenhamAlgorithm import BresenhamAlgorithm
-from model.Algorithms.LineAlgorithms.DDAAlgorithm import DDAAlgorithm
-from model.Algorithms.CurveAlgorithms.HermiteFormsAlgorithm import HermiteAlgorithm
+from model.Shapes.Line import Line
+from model.Algorithms.CurveAlgorithms.BezierAlgorithm import BezierAlgorithm
+from model.Algorithms.CurveAlgorithms.BSplainAlgorithm import BSplainAlgorithm
+from model.Algorithms.CurveAlgorithms.HermiteAlgorithm import HermiteAlgorithm
+from model.InterpolationDot import InterpolationDot
 
-class Curve(Shape):
-    def __init__(self, reference_dot_list):
-        super().__init__()
-        self.reference_dot_list = reference_dot_list
+class Curve(Line):
+    def __init__(self, start_dot:InterpolationDot, end_dot:InterpolationDot):
+        super().__init__(start_dot, end_dot)
         self.algorithm_dict = {
             "Формы Эрмита": HermiteAlgorithm(),
-            "Формы Безье": DDAAlgorithm(),
-            "В-сплайн": BresenhamAlgorithm()
+            "Формы Безье": BezierAlgorithm(),
+            "В-сплайн": BSplainAlgorithm()
         }
-
-    def draw_dots(self, algorithm):
-        self.algorithm = self.algorithm_dict[algorithm]
-        self.dot_list = self.algorithm.compute_points(self.reference_dot_list)
