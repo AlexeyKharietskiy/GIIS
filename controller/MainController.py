@@ -3,6 +3,7 @@ from view.InputWindows.CircleInputWindow import CircleInputWindow
 from view.InputWindows.EllipseInputWindow import EllipseInputWindow
 from view.InputWindows.HyperbolaInputWindow import HyperbolaInputWindow
 from view.InputWindows.ParabolaInputWindow import ParabolaInputWindow
+from view.InputWindows.CurveInputWindow import CurveInputWindow
 import tkinter
 
 
@@ -41,6 +42,11 @@ class MainController:
     def run_parabola_input_window(self, algorithm):
         self.check_window()
         self.input_data_window = ParabolaInputWindow(algorithm)
+        self.input_data_window.run()
+
+    def run_curve_input_window(self, algorithm):
+        self.check_window()
+        self.input_data_window = CurveInputWindow(algorithm)
         self.input_data_window.run()
 
 
