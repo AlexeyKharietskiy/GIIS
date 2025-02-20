@@ -9,3 +9,6 @@ class Shape(ABC):
     @abstractmethod
     def draw_dots(self, algorithm):
         pass
+
+    def clear_dot_list(self):
+        self.dot_list = []

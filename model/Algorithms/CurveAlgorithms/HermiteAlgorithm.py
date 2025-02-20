@@ -33,8 +33,8 @@ class HermiteAlgorithm(Algorithm):
         reference_matrix = [
             [start_dot.x, start_dot.y],
             [end_dot.x, end_dot.y],
-            [start_dot.derivative_x * scale_factor, start_dot.derivative_y * scale_factor],
-            [end_dot.derivative_x * scale_factor, end_dot.derivative_y * scale_factor]
+            [start_dot.dx * scale_factor, start_dot.dy * scale_factor],
+            [end_dot.dx * scale_factor, end_dot.dy * scale_factor]
             ]
         cx_matrix = self.multiply_matrix(self.__hermite_matrix, reference_matrix)
         t = 0

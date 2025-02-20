@@ -6,45 +6,59 @@ class CurveController:
     def __init__(self, algorithm):
         self.output_window = None
         self.algorithm = algorithm
-        self.shape_list = []
+        self.reference_dot_list = []
+        self.segment_list = []
 
-    def get_curve_point_list(self, reference_dot_list, join_mode, adjust_mode=False):
+    def get_curve_point_list(self):
         dot_list = []
-        pair_list = []
-        for point in reference_dot_list:
-            dot_list.append(InterpolationDot(point[0], point[1], point[2], point[3]))
-            pair_list = list(zip(dot_list,dot_list[1:]))
-        if adjust_mode:
-            for pair in pair_list:
-                shape = Curve(pair[0], pair[1])
-                self.__check_existence(shape)
-                dot_list = [(dot.x, dot.y) for shape in self.shape_list for dot in shape.dot_list]
-            return dot_list
-
-        if join_mode:
-            for pair in pair_list:
-                shape = Curve(pair[0], pair[1])
-                self.__check_existence(shape)
-        else:
-            for i in range(0, len(pair_list), 2):
-                shape = Curve(pair_list[i][0], pair_list[i][1])
-                self.__check_existence(shape)
-        dot_list = [(dot.x, dot.y) for shape in self.shape_list for dot in shape.dot_list ]
+        for shape in self.segment_list:
+            shape.draw_dots(self.algorithm)
+            for dot in shape.dot_list:
+                dot_list.append((dot.x, dot.y))
+            shape.clear_dot_list()
         return dot_list
 
+## добавление точки
+    def add_reference_dot(self, dot, join_mod):
+        interpolation_dot = InterpolationDot(dot[0], dot[1], dot[2], dot[3])
+        if self.reference_dot_list:
+            self.add_dot_in_segment_list(interpolation_dot, join_mod)
+        self.reference_dot_list.append(interpolation_dot)
 
-    def __check_existence(self, shape):
-        found = False
-        for i, existed_shape in enumerate(self.shape_list):
-            if shape.start.x == existed_shape.start.x and shape.end.x == existed_shape.end.x \
-                    and shape.start.y == existed_shape.start.y and shape.end.y == existed_shape.end.y:
-                self.shape_list[i] = shape
-                found = True
+    def change_reference_dot(self, dot):
+        interpolation_dot = InterpolationDot(dot[0], dot[1], dot[2], dot[3])
+        for i in range(len(self.reference_dot_list)):
+            if interpolation_dot == self.reference_dot_list[i]:
+                self.reference_dot_list[i] = interpolation_dot
+                self.change_dot_in_segment(interpolation_dot)
                 break
-        if not found:
-            self.shape_list.append(shape)
 
-        shape.draw_dots(self.algorithm)
+    def change_dot_in_segment(self, changed_dot):
+        for i, segment in enumerate(self.segment_list):
+            if segment.start == changed_dot:
+                segment.start = changed_dot
+            elif segment.end == changed_dot:
+                segment.end = changed_dot
+                break
+
+    def add_dot_in_segment_list(self, dot, join_mode):
+        if not self.segment_list:
+            self.segment_list.append(Curve(self.reference_dot_list[0], dot))
+            return
+        if join_mode:
+            self.segment_list.append(Curve(self.reference_dot_list[-1], dot))
+        else:
+            if self.reference_dot_list[-1] != self.segment_list[-1].end:
+                self.segment_list.append(Curve(self.reference_dot_list[-1], dot))
 
 
+    def get_reference_dot_list(self):
+        dot_list = []
+        for dot in self.reference_dot_list:
+            dot_list.append((dot.x, dot.y, dot.dx, dot.dy))
 
+        return dot_list
+
+    def clear_all(self):
+        self.segment_list = []
+        self.reference_dot_list = []

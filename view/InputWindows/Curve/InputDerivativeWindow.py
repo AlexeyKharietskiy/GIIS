@@ -14,6 +14,7 @@ class InputDerivativeWindow(tk.Toplevel):
         self.resizable(False, False)
         self.center_window()
         self.configure(bg="#f5f5f5")
+        self.grab_set()
 
         self.style = ttk.Style()
         self.style.configure("TButton", padding=5, relief="flat", background="#4CAF50", foreground="white", font=("Arial", 10))
