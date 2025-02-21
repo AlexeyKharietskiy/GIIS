@@ -1,11 +1,10 @@
 import tkinter as tk
 from tkinter import Menu
-from controller.MainController import MainController
 
 
 class MainWindow:
-    def __init__(self):
-        self.controller = MainController()
+    def __init__(self, controller):
+        self.controller = controller
         self.root = tk.Tk()
         self.algorithm = tk.StringVar()
         self.root.resizable(False,False)

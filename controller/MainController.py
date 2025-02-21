@@ -1,52 +1,47 @@
-from view.InputWindows.Line.LineInputWindow import LineInputWindow
-from view.InputWindows.SecondOrder.CircleInputWindow import CircleInputWindow
-from view.InputWindows.SecondOrder.EllipseInputWindow import EllipseInputWindow
-from view.InputWindows.SecondOrder.HyperbolaInputWindow import HyperbolaInputWindow
-from view.InputWindows.SecondOrder.ParabolaInputWindow import ParabolaInputWindow
-from view.InputWindows.Curve.CurveInputWindow import CurveInputWindow
-import tkinter
+from controller.Curve.CurveController import CurveController
+from controller.Line.LineController import LineController
+from controller.SecondOrder.ParabolaController import ParabolaController
+from controller.SecondOrder.EllipseController import EllipseController
+from controller.SecondOrder.HyperbolaController import HyperbolaController
+from controller.SecondOrder.CircleController import CircleController
+from view.MainWindow import MainWindow
 
 
 class MainController:
     def __init__(self):
         self.input_data_window = None
-
-    def check_window(self):
-        if self.input_data_window is not None:
-            try:
-                if self.input_data_window.exist():
-                    self.input_data_window.destroy()
-            except tkinter.TclError:
-                pass
+        self.main_window = MainWindow(self)
+        self.controller = None
 
     def run_line_input_window(self, algorithm):
-        self.check_window()
-        self.input_data_window = LineInputWindow(algorithm)
-        self.input_data_window.run()
+        if not isinstance(self.controller, LineController):
+            self.controller = LineController(algorithm)
+        self.controller.run_input_window()
 
     def run_circle_input_window(self, algorithm):
-        self.check_window()
-        self.input_data_window = CircleInputWindow(algorithm)
-        self.input_data_window.run()
+        if not isinstance(self.controller, LineController):
+            self.controller = CircleController(algorithm)
+        self.controller.run_input_window()
 
     def run_ellipse_input_window(self, algorithm):
-        self.check_window()
-        self.input_data_window = EllipseInputWindow(algorithm)
-        self.input_data_window.run()
+        if not isinstance(self.controller, LineController):
+            self.controller = EllipseController(algorithm)
+        self.controller.run_input_window()
 
     def run_hyperbola_input_window(self, algorithm):
-        self.check_window()
-        self.input_data_window = HyperbolaInputWindow(algorithm)
-        self.input_data_window.run()
+        if not isinstance(self.controller, LineController):
+            self.controller = HyperbolaController(algorithm)
+        self.controller.run_input_window()
 
     def run_parabola_input_window(self, algorithm):
-        self.check_window()
-        self.input_data_window = ParabolaInputWindow(algorithm)
-        self.input_data_window.run()
+        if not isinstance(self.controller, LineController):
+            self.controller = ParabolaController(algorithm)
+        self.controller.run_input_window()
 
     def run_curve_input_window(self, algorithm):
-        self.check_window()
-        self.input_data_window = CurveInputWindow(algorithm)
-        self.input_data_window.run()
+        if not isinstance(self.controller, LineController):
+            self.controller = CurveController(algorithm)
+        self.controller.run_input_window()
 
-
+    def run_app(self):
+        self.main_window.run()

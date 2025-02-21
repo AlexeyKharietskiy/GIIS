@@ -1,14 +1,12 @@
 import tkinter as tk
 from tkinter import messagebox
-from controller.SecondOrder.EllipseController import EllipseController
 from view.InputWindows.InputWindow import InputWindow
 
 
 class EllipseInputWindow(InputWindow):
-    def __init__(self, algorithm):
-        super().__init__()
+    def __init__(self, controller):
+        super().__init__(controller)
         self.root.title("Ввод нужных данных")
-        self.controller = EllipseController(algorithm)
         self.debug_mode = False
         self.entry_xc = None
         self.entry_a = None
@@ -42,14 +40,14 @@ class EllipseInputWindow(InputWindow):
         tk.Checkbutton(frame_options, text="Режим отладки", command=self.reverse_debug).grid(row=0, column=0, padx=5,
                                                                                            pady=5)
 
-        tk.Button(self.root, text="Построить отрезок", command=self.show_line).grid(row=2, column=0,
-                                                                                                 columnspan=2, padx=10,
-                                                                                                 pady=10, sticky="ew")
+        tk.Button(self.root, text="Построить отрезок", command=self.show_shape).grid(row=2, column=0,
+                                                                                     columnspan=2, padx=10,
+                                                                                     pady=10, sticky="ew")
 
     def reverse_debug(self):
         self.debug_mode = not self.debug_mode
 
-    def show_line(self):
+    def show_shape(self):
         try:
             xc = int(self.entry_xc.get())
             yc = int(self.entry_yc.get())
@@ -59,15 +57,3 @@ class EllipseInputWindow(InputWindow):
             self.root.destroy()
         except ValueError:
             messagebox.showerror("Ошибка", "Пожалуйста, введите корректные числовые значения.")
-
-    def run(self):
-        self.root.lift()
-        self.root.attributes('-topmost', True)
-        self.root.after_idle(self.root.attributes, '-topmost', False)
-        self.root.mainloop()
-
-    def destroy(self):
-        self.root.destroy()
-
-    def exist(self):
-        return self.root.winfo_exists()

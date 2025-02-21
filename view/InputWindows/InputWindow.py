@@ -1,13 +1,15 @@
 import tkinter as tk
 from tkinter.font import Font
+from controller.InputController import InputController
 
 class InputWindow:
-    def __init__(self):
+    def __init__(self, controller: InputController):
+        self.controller = controller
         self.root = tk.Tk()
         self.root.configure(bg="#f5f5f5")
         self.font = Font(family="Arial", size=10)
         self.root.resizable(False, False)
-        self.controller = None
+        self.root.title("Ввод нужных данных")
 
     def center_window(self):
         self.root.update_idletasks()
@@ -30,3 +32,6 @@ class InputWindow:
 
     def exist(self):
         return self.root.winfo_exists()
+
+    def show_shape(self):
+        pass

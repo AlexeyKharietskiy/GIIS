@@ -62,6 +62,7 @@ class ShapeDrawWindow:
                 self.create_image(self.current_index)
             else:
                 self.ax.set_title("All pixels displayed")
+
     @staticmethod
     def show_shape():
         plt.tight_layout()

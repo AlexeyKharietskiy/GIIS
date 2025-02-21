@@ -1,20 +1,19 @@
 import tkinter as tk
 from tkinter import messagebox
-from controller.Line.LineController import LineController
 from view.InputWindows.InputWindow import InputWindow
 
 
 class LineInputWindow(InputWindow):
-    def __init__(self, algorithm):
-        super().__init__()
-        self.root.title("Ввод нужных данных")
-        self.controller = LineController(algorithm)
+    def __init__(self, controller):
+        super().__init__(controller)
         self.debug_mode = False
-
+        self.entry_x1 = None
+        self.entry_y1 = None
+        self.entry_x2 = None
+        self.entry_y2 = None
         self.create_widgets_line()
 
     def create_widgets_line(self):
-
         frame_point1 = tk.LabelFrame(self.root, text="Точка 1", padx=10, pady=10)
         frame_point1.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         tk.Label(frame_point1, text="X1:").grid(row=0, column=0, padx=5, pady=5)
@@ -38,14 +37,14 @@ class LineInputWindow(InputWindow):
         tk.Checkbutton(frame_options, text="Режим отладки", command=self.reverse_debug).grid(row=0, column=0, padx=5,
                                                                                            pady=5)
 
-        tk.Button(self.root, text="Построить отрезок", command=self.show_line).grid(row=2, column=0,
-                                                                                                 columnspan=2, padx=10,
-                                                                                                 pady=10, sticky="ew")
+        tk.Button(self.root, text="Построить отрезок", command=self.show_shape).grid(row=2, column=0,
+                                                                                     columnspan=2, padx=10,
+                                                                                     pady=10, sticky="ew")
 
     def reverse_debug(self):
         self.debug_mode = not self.debug_mode
 
-    def show_line(self):
+    def show_shape(self):
         try:
             x1 = int(self.entry_x1.get())
             y1 = int(self.entry_y1.get())
