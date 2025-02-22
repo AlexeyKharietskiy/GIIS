@@ -1,37 +1,9 @@
-import tkinter as tk
-from tkinter.font import Font
-from controller.InputController import InputController
+from view.Window import Window
 
-class InputWindow:
-    def __init__(self, controller: InputController):
-        self.controller = controller
-        self.root = tk.Tk()
-        self.root.configure(bg="#f5f5f5")
-        self.font = Font(family="Arial", size=10)
-        self.root.resizable(False, False)
-        self.root.title("Ввод нужных данных")
+class InputWindow(Window):
+    def __init__(self, daddy_window, controller, *kwargs):
+        super().__init__(daddy_window, controller)
+        self.title("Ввод нужных данных")
 
-    def center_window(self):
-        self.root.update_idletasks()
-        width = self.root.winfo_width()
-        height = self.root.winfo_height()
-        screen_width = self.root.winfo_screenwidth()
-        screen_height = self.root.winfo_screenheight()
-        x = (screen_width // 2) - (width // 2)
-        y = (screen_height // 2) - (height // 2)
-        self.root.geometry(f"+{x}+{y}")
-
-    def run(self):
-        self.root.lift()
-        self.root.attributes('-topmost', True)
-        self.root.after_idle(self.root.attributes, '-topmost', False)
-        self.root.mainloop()
-
-    def destroy(self):
-        self.root.destroy()
-
-    def exist(self):
-        return self.root.winfo_exists()
-
-    def show_shape(self):
+    def return_data(self):
         pass

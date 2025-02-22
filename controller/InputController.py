@@ -1,23 +1,20 @@
-import tkinter
+from controller.Controller import Controller
 
-
-class InputController:
-    def __init__(self, algorithm):
+class InputController(Controller):
+    def __init__(self, daddy_window, algorithm):
+        super().__init__()
+        self.daddy_window = daddy_window
         self.output_window = None
-        self.input_window = None
+        self.window = None
         self.algorithm = algorithm
         self.shape = None
 
-    def run_output_window(self, *kwargs):
+    def run_window(self, *args):
         pass
 
-    def check_input_window(self):
-        if self.input_window is not None:
-            try:
-                if self.input_window.exist():
-                    self.input_window.destroy()
-            except tkinter.TclError:
-                pass
-
-    def run_input_window(self):
+    def get_model_info(self):
         pass
+
+    def set_model_info(self, *args):
+        pass
+

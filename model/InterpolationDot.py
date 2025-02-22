@@ -7,13 +7,5 @@ class InterpolationDot(Dot):
         self.dx = derivative_x
         self.dy = derivative_y
 
-    def __eq__(self, other):
-        if isinstance(other, InterpolationDot):
-            return self.x == other.x and self.y == other.y
-        return False
-
-    def __hash__(self):
-        return hash((self.x, self.y))
-
     def __iter__(self):
         return iter((self.x, self.y, self.dx, self.dy))

@@ -1,17 +1,21 @@
 import tkinter as tk
 from tkinter import Menu
+from tkinter.font import Font
 
 
-class MainWindow:
+class MainWindow(tk.Tk):
     def __init__(self, controller):
+        super().__init__()
         self.controller = controller
-        self.root = tk.Tk()
+        self.configure(bg="#f5f5f5")
+        self.font = Font(family="Arial", size=10)
+        self.resizable(False, False)
+        self.protocol("WM_DELETE_WINDOW", self.destroy)
         self.algorithm = tk.StringVar()
-        self.root.resizable(False,False)
-        self.root.title("Графический редактор")
-        self.root.geometry("800x600")
-        self.menu_bar = Menu(self.root)
-        self.root.config(menu=self.menu_bar)
+        self.title("Графический редактор")
+        self.geometry("800x600")
+        self.menu_bar = Menu(self)
+        self.config(menu=self.menu_bar)
 
         self.line_menu = Menu(self.menu_bar, tearoff=0)
         self.second_order_line_menu = Menu(self.menu_bar, tearoff=0)
@@ -20,51 +24,59 @@ class MainWindow:
         self.__paste_second_order_line_menu()
         self.__paste_curve_menu()
 
-        self.canvas = tk.Canvas(self.root, bg="white")
-        self.__paste_canvas()
+        self.label = tk.Label(self, text="Добро пожаловать в графический редактор!"
+                                         "\nВыберите тип фигуры и алгоритм для построения.",
+                              justify='center',
+                              font=("Arial", 20),
+                              bg="#f5f5f5"
+                              )
+        self.label.pack(pady=220)
+
+    def center_window(self):
+        self.update_idletasks()
+        width = self.winfo_width()
+        height = self.winfo_height()
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (screen_width // 2) - (width // 2)
+        y = (screen_height // 2) - (height // 2)
+        self.geometry(f"+{x}+{y}")
+
+    def exist(self):
+        return self.winfo_exists()
+
+    def run(self):
+        self.center_window()
+        self.mainloop()
 
     def __paste_curve_menu(self):
-        self.curve_menu.add_radiobutton(label="Формы Эрмита",variable=self.algorithm, command=self.input_curve_data)
-        self.curve_menu.add_radiobutton(label="Формы Безье", variable=self.algorithm,command=self.input_curve_data)
-        self.curve_menu.add_radiobutton(label="В-сплайн", variable=self.algorithm,command=self.input_curve_data)
+        self.curve_menu.add_radiobutton(label="Формы Эрмита",variable=self.algorithm,
+                                        command=lambda:self.controller.run_curve_input_window(self.algorithm.get()))
+        self.curve_menu.add_radiobutton(label="Формы Безье", variable=self.algorithm,
+                                        command=lambda:self.controller.run_curve_input_window(self.algorithm.get()))
+        self.curve_menu.add_radiobutton(label="В-сплайн", variable=self.algorithm,
+                                        command=lambda:self.controller.run_curve_input_window(self.algorithm.get()))
         self.menu_bar.add_cascade(label="Кривые", menu=self.curve_menu)
 
     def __paste_line_menu(self):
-        self.line_menu.add_radiobutton(label="Алгоритм ЦДА", variable=self.algorithm, command=self.input_line_data)
+        self.line_menu.add_radiobutton(label="Алгоритм ЦДА", variable=self.algorithm,
+                                       command=lambda:self.controller.run_line_input_window(self.algorithm.get()))
         self.line_menu.add_radiobutton(label="Алгоритм Брезенхема", variable=self.algorithm,
-                                       command=self.input_line_data)
-        self.line_menu.add_radiobutton(label="Алгоритм Ву", variable=self.algorithm, command=self.input_line_data)
+                                       command=lambda:self.controller.run_line_input_window(self.algorithm.get()))
+        self.line_menu.add_radiobutton(label="Алгоритм Ву", variable=self.algorithm,
+                                       command=lambda:self.controller.run_line_input_window(self.algorithm.get()))
         self.menu_bar.add_cascade(label="Отрезки", menu=self.line_menu)
 
     def __paste_second_order_line_menu(self):
         self.second_order_line_menu.add_radiobutton(label="Окружность", variable=self.algorithm,
-                                                    command=self.input_circle_data)
+                                                    command=lambda:self.controller.run_circle_input_window(self.algorithm.get()))
         self.second_order_line_menu.add_radiobutton(label="Эллипс", variable=self.algorithm,
-                                                    command=self.input_ellipse_data)
+                                                    command=lambda:self.controller.run_ellipse_input_window(self.algorithm.get()))
         self.second_order_line_menu.add_radiobutton(label="Гипербола", variable=self.algorithm,
-                                                    command=self.input_hyperbola_data)
+                                                    command=lambda:self.controller.run_hyperbola_input_window(self.algorithm.get()))
         self.second_order_line_menu.add_radiobutton(label="Парабола", variable=self.algorithm,
-                                                    command=self.input_parabola_data)
+                                                    command=lambda:self.controller.run_parabola_input_window(self.algorithm.get()))
         self.menu_bar.add_cascade(label="Линии второго порядка", menu=self.second_order_line_menu)
-
-    def __paste_canvas(self):
-        self.canvas.pack(fill=tk.BOTH, expand=True)
-
-        # Приветственное сообщение
-        self.canvas.create_text(
-            400,
-            300,
-            text="Добро пожаловать в графический редактор!\nВыберите тип фигуры и алгоритм для построения.",
-            fill="black",
-            font=("Arial", 14),
-            justify="center"
-        )
-
-    def run(self):
-        self.root.lift()  # Поднимает окно на передний план
-        self.root.attributes('-topmost', True)  # Делает окно всегда поверх других
-        self.root.after_idle(self.root.attributes, '-topmost', False)  # Сбрасывает после отображения
-        self.root.mainloop()
 
     def input_line_data(self):
         self.controller.run_line_input_window(self.algorithm.get())

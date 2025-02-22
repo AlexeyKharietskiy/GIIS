@@ -6,10 +6,10 @@ from controller.InputController import InputController
 
 
 class LineController(InputController):
-    def __init__(self, algorithm):
-        super().__init__(algorithm)
+    def __init__(self, daddy_window, algorithm):
+        super().__init__(daddy_window, algorithm)
 
-    def run_output_window(self, start, end, debug_mode):
+    def get_result(self, start, end, debug_mode):
         self.shape = Line(Dot(start[0], start[1]), Dot(end[0], end[1]))
         self.shape.draw_dots(self.algorithm)
         self.output_window = ShapeDrawWindow(self.shape, debug_mode)
@@ -17,6 +17,6 @@ class LineController(InputController):
         self.shape.clear_dot_list()
 
     def run_input_window(self):
-        self.check_input_window()
-        self.input_window = LineInputWindow(self)
-        self.input_window.run()
+        self.check_window()
+        self.window = LineInputWindow(self.daddy_window, self)
+        self.window.run()
