@@ -11,6 +11,7 @@ class Circle(Shape):
             'Окружность': CircleBresenhamAlgorithm(),
         }
 
-    def draw_dots(self, algorithm):
+    def compute_points(self, algorithm):
         self.algorithm = self.algorithm_dict[algorithm]
         self.dot_list = self.algorithm.compute_points(self.center, self.radius)
+        self.unique_dot_list()

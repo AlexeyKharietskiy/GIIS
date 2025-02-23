@@ -1,6 +1,6 @@
 from view.ShapeDrawWindow import ShapeDrawWindow
 from model.Dot import Dot
-from model.Shapes.Parabola import Parabola
+from model.Shapes.SecondOrder.Parabola import Parabola
 from controller.InputController import InputController
 from view.InputWindows.SecondOrder.ParabolaInputWindow import ParabolaInputWindow
 
@@ -11,11 +11,11 @@ class ParabolaController(InputController):
 
     def get_result(self, center, high, debug_mode):
         self.shape = Parabola(Dot(center[0], center[1]), high)
-        self.shape.draw_dots(self.algorithm)
+        self.shape.compute_points(self.algorithm)
         self.output_window = ShapeDrawWindow(self.shape, debug_mode, size = 70)
         self.output_window.show_shape()
 
-    def run_input_window(self):
+    def run_window(self):
         self.check_window()
         self.window = ParabolaInputWindow(self.daddy_window, self)
         self.window.run()

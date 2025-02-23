@@ -14,6 +14,8 @@ class Line(Shape):
             'Алгоритм Брезенхема': BresenhamAlgorithm()
         }
 
-    def draw_dots(self, algorithm):
+    def compute_points(self, algorithm):
         self.algorithm = self.algorithm_dict[algorithm]
         self.dot_list = self.algorithm.compute_points(self.start, self.end)
+        self.unique_dot_list()
+

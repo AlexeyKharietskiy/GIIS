@@ -1,7 +1,7 @@
 from view.ShapeDrawWindow import ShapeDrawWindow
 from view.InputWindows.Line.LineInputWindow import LineInputWindow
 from model.Dot import Dot
-from model.Shapes.Line import Line
+from model.Shapes.Line.Line import Line
 from controller.InputController import InputController
 
 
@@ -11,12 +11,12 @@ class LineController(InputController):
 
     def get_result(self, start, end, debug_mode):
         self.shape = Line(Dot(start[0], start[1]), Dot(end[0], end[1]))
-        self.shape.draw_dots(self.algorithm)
+        self.shape.compute_points(self.algorithm)
         self.output_window = ShapeDrawWindow(self.shape, debug_mode)
         self.output_window.show_shape()
         self.shape.clear_dot_list()
 
-    def run_input_window(self):
+    def run_window(self):
         self.check_window()
         self.window = LineInputWindow(self.daddy_window, self)
         self.window.run()

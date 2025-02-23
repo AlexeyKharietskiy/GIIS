@@ -11,11 +11,6 @@ class CanvasWindow(Window):
         self.state("zoomed")
         self.main_frame = ttk.Frame(self)
         self.control_frame = ttk.Frame(self.main_frame)
-        self.btn_build = ttk.Button(
-            self.control_frame,
-            text="Построить",
-            command=self.draw_curve
-        )
 
         self.btn_clear = ttk.Button(
             self.control_frame,
@@ -33,6 +28,7 @@ class CanvasWindow(Window):
             self.main_frame,
             bg="white",
         )
+        self.bind("<Escape>", self.clear_canvas)
         self.bind("<Return>", self.draw_curve)
         self.bind("<KeyPress-space>", self.controller.toggle_seamless_mode)
 
@@ -46,46 +42,40 @@ class CanvasWindow(Window):
         dot_coord = self.canvas.coords(dot_id)
         x, y = dot_coord[0]+5, dot_coord[1]+5
         self.controller.change_point(x, y)
-        self.draw_curve()
 
     def on_canvas_click(self, event):
         x, y = event.x, event.y
-        if self.controller.set_model_info(x, y):
-            self.canvas.create_oval(x+5, y+5, x-5, y-5, fill='black', tags='dot')
-            logger.info(f'add dot ({x}, {y})')
+        self.controller.set_model_info(x, y)
 
     def draw_curve(self, event=None):
         self.canvas.delete("curve")
-        dot_list = self.controller.get_model_info()
+        reference_dot_list, dot_list = self.controller.get_model_info()
+
+        for dot in reference_dot_list:
+            x, y = dot[0], dot[1]
+            self.canvas.create_oval(x+5, y+5, x-5, y-5, fill='#4682B4', tags='dot')
+
         for dot in dot_list:
             x, y = dot[0], dot[1]
             self.canvas.create_rectangle(x+1, y+1, x-1, y-1, tags="curve", fill="black", width=2)
+
         self.canvas.tag_raise("dot")
 
-    def clear_canvas(self):
+    def clear_canvas(self, event=None):
         self.controller.clear_canvas()
         self.canvas.delete("all")
 
     def on_enter_dot(self, event):
         item_id = self.canvas.find_withtag(tk.CURRENT)[0]
-        self.canvas.itemconfig(item_id, fill="red")
+        self.canvas.itemconfig(item_id, fill="#90EE90")
 
     def on_exit_dot(self, event):
         item_id = self.canvas.find_withtag(tk.CURRENT)[0]
-        self.canvas.itemconfig(item_id, fill="black")
+        self.canvas.itemconfig(item_id, fill="#4682B4")
 
     def pack_all(self):
         self.main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         self.control_frame.pack(fill=tk.X)
-        self.btn_build.pack(side=tk.LEFT, padx=5)
         self.btn_clear.pack(side=tk.LEFT, padx=5)
         self.seamless_check.pack(side=tk.RIGHT, padx=5)
         self.canvas.pack(fill=tk.BOTH, expand=True, side=tk.TOP)
-
-
-
-
-
-
-
-

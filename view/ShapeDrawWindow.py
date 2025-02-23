@@ -14,15 +14,12 @@ class ShapeDrawWindow:
 
     @staticmethod
     def set_fullscreen():
-        """Устанавливает окно на весь экран."""
         manager = plt.get_current_fig_manager()
         manager.window.state('zoomed')
 
-        """Настройка окна и сетки."""
 
     def setup_window(self):
         self.restore_window()
-
         if not self.debug_mode:
             self.create_image(len(self.shape.dot_list) - 1)
         else:
@@ -30,7 +27,6 @@ class ShapeDrawWindow:
             self.fig.canvas.mpl_connect('key_press_event', lambda event: self.on_key(event))
 
     def create_image(self, current_index):
-        """Создает и отображает изображение на основе текущего индекса."""
         image = np.ones((self.size, self.size))
 
         for i in range(current_index + 1):
@@ -50,9 +46,8 @@ class ShapeDrawWindow:
         self.ax.grid(True, which='both', color='black', linestyle='--', linewidth=0.5)
         self.ax.set_xticks(np.arange(0, self.size+1, 1))
         self.ax.set_yticks(np.arange(0, self.size+1, 1))
-        self.ax.set_xticklabels([])  # Убираем метки на оси X
-        self.ax.set_yticklabels([])  # Убираем метки на оси Y
-
+        self.ax.set_xticklabels([])
+        self.ax.set_yticklabels([])
         self.ax.tick_params(axis='both', which='major', labelsize=6)
 
     def on_key(self, event):

@@ -1,6 +1,6 @@
 from view.ShapeDrawWindow import ShapeDrawWindow
 from model.Dot import Dot
-from model.Shapes.Circle import Circle
+from model.Shapes.SecondOrder.Circle import Circle
 from controller.InputController import InputController
 from view.InputWindows.SecondOrder.CircleInputWindow import CircleInputWindow
 
@@ -11,11 +11,11 @@ class CircleController(InputController):
 
     def get_result(self, center, radius, debug_mode):
         self.shape = Circle(Dot(center[0], center[1]), radius)
-        self.shape.draw_dots(self.algorithm)
+        self.shape.compute_points(self.algorithm)
         self.output_window = ShapeDrawWindow(self.shape, debug_mode, size=50)
         self.output_window.show_shape()
 
-    def run_input_window(self):
+    def run_window(self):
         self.check_window()
         self.window = CircleInputWindow(self.daddy_window, self)
         self.window.run()

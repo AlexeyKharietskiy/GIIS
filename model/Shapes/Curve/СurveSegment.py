@@ -1,4 +1,4 @@
-from model.Shapes.Line import Line
+from model.Shapes.Line.Line import Line
 from model.Algorithms.CurveAlgorithms.BezierAlgorithm import BezierAlgorithm
 from model.Algorithms.CurveAlgorithms.BSplainAlgorithm import BSplainAlgorithm
 from model.Algorithms.CurveAlgorithms.HermiteAlgorithm import HermiteAlgorithm

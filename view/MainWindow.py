@@ -78,20 +78,3 @@ class MainWindow(tk.Tk):
                                                     command=lambda:self.controller.run_parabola_input_window(self.algorithm.get()))
         self.menu_bar.add_cascade(label="Линии второго порядка", menu=self.second_order_line_menu)
 
-    def input_line_data(self):
-        self.controller.run_line_input_window(self.algorithm.get())
-
-    def input_circle_data(self):
-        self.controller.run_circle_input_window(self.algorithm.get())
-
-    def input_ellipse_data(self):
-        self.controller.run_ellipse_input_window(self.algorithm.get())
-
-    def input_hyperbola_data(self):
-        self.controller.run_hyperbola_input_window(self.algorithm.get())
-
-    def input_parabola_data(self):
-        self.controller.run_parabola_input_window(self.algorithm.get())
-
-    def input_curve_data(self):
-        self.controller.run_curve_input_window(self.algorithm.get())

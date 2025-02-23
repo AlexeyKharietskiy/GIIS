@@ -4,40 +4,56 @@ from model.Dot import Dot
 
 class HyperbolaBresenhamAlgorithm(Algorithm):
     def compute_points(self, center: Dot, a: int, b: int):
-        dot_list = []
-        x = abs(a)  # Начинаем с вершины гиперболы (a, 0)
+        x0, y0 = center.x, center.y
+        points = []
+
+        # Инициализация начальных значений
+        x = a
         y = 0
-        a = a * a
-        b = b * b
+        d = b ** 2 * (2 * x + 1) - 2 * a ** 2 * (y + 1) + a ** 2
 
-        # Начальное значение ошибки
-        error = b * (2 * x + 1) - a
-        bx = x
-        dx = 5
+        # Построение в первом квадранте (x >= a, y >= 0)
+        if a >= b:
+            # Горизонтальная гипербола
+            x = a
+            y = 0
+            d = b**2 * (2 * x + 1) - 2 * a**2 * (y + 1) + a**2
 
-        # Построение точек в первом квадранте
-        while x- bx <= dx:  # Ограничиваем область построения
-            dot_list.extend(self.get_hyperbola_points(center, Dot(x, y)))
+            while x <= 100:  # Ограничение для предотвращения бесконечного цикла
+                points.extend(self.get_symmetric_points(center, Dot(x, y)))
 
-            f1 =  (error <= 0 or 2 * error - b * (2 * x + 1) <= 0)
-            f2 = (error <= 0 or 2 * error - a * (2 * y + 1) > 0)
-            if f1:
-                x= x + 1
-                error += b * (2 * x + 1)
+                if d < 0:
+                    d += b**2 * (2 * x + 3)
+                else:
+                    d += b**2 * (2 * x + 3) - 4 * a**2 * (y + 1)
+                    y += 1
+                x += 1
+        else:
+            # Вертикальная гипербола
+            x = 0
+            y = b
+            d = a**2 * (2 * y + 1) - 2 * b**2 * (x + 1) + b**2
 
-            if f2:
-                y=y+1
-                error -= a * (2 * y - 1)
+            while y <= 100:  # Ограничение для предотвращения бесконечного цикла
+                points.extend(self.get_symmetric_points(center, Dot(x, y)))
 
-        return dot_list
+                if d < 0:
+                    d += a**2 * (2 * y + 3)
+                else:
+                    d += a**2 * (2 * y + 3) - 4 * b**2 * (x + 1)
+                    x += 1
+                y += 1
+
+        return points
+
 
     @staticmethod
-    def get_hyperbola_points(center: Dot, dot: Dot):
-        # Получаем четыре симметричные точки
-        points = [
-            Dot(center.x + dot.x, center.y + dot.y),  # Первый квадрант
-            Dot(center.x - dot.x, center.y + dot.y),  # Второй квадрант
-            Dot(center.x + dot.x, center.y - dot.y),  # Четвертый квадрант
-            Dot(center.x - dot.x, center.y - dot.y),  # Третий квадрант
+    def get_symmetric_points(center: Dot, dot: Dot):
+        """Генерирует симметричные точки для всех квадрантов"""
+        x0, y0 = center.x, center.y
+        return [
+            Dot(x0 + dot.x, y0 + dot.y),  # Первый квадрант
+            Dot(x0 - dot.x, y0 + dot.y),  # Второй квадрант
+            Dot(x0 - dot.x, y0 - dot.y),  # Третий квадрант
+            Dot(x0 + dot.x, y0 - dot.y)  # Четвертый квадрант
         ]
-        return points

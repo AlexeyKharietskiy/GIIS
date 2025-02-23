@@ -15,27 +15,27 @@ class MainController:
     def run_line_input_window(self, algorithm, event=None):
         if not isinstance(self.controller, LineController):
             self.controller = LineController(self.window, algorithm)
-        self.controller.run_input_window()
+        self.controller.run_window()
 
     def run_circle_input_window(self, algorithm, event=None):
         if not isinstance(self.controller, LineController):
             self.controller = CircleController(self.window, algorithm)
-        self.controller.run_input_window()
+        self.controller.run_window()
 
     def run_ellipse_input_window(self, algorithm, event=None):
         if not isinstance(self.controller, LineController):
             self.controller = EllipseController(self.window, algorithm)
-        self.controller.run_input_window()
+        self.controller.run_window()
 
     def run_hyperbola_input_window(self, algorithm, event=None):
         if not isinstance(self.controller, LineController):
             self.controller = HyperbolaController(self.window, algorithm)
-        self.controller.run_input_window()
+        self.controller.run_window()
 
     def run_parabola_input_window(self, algorithm, event=None):
         if not isinstance(self.controller, LineController):
             self.controller = ParabolaController(self.window, algorithm)
-        self.controller.run_input_window()
+        self.controller.run_window()
 
     def run_curve_input_window(self, algorithm, event=None):
         if not isinstance(self.controller, LineController):

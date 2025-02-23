@@ -1,7 +1,6 @@
 from controller.Controller import Controller
 from view.CanvasWindow import CanvasWindow
-from controller.Curve.InputCurveController import InputCurveController
-import tkinter as tk
+from controller.Curve.DataCurveController import DataCurveController
 
 
 class CanvasController(Controller):
@@ -24,9 +23,10 @@ class CanvasController(Controller):
         self.input_controller.change_dot(dot)
 
     def get_model_info(self):
-        unprocess_dot_list = self.input_controller.get_result()
+        unprocess_reference_dot_list, unprocess_dot_list = self.input_controller.get_result()
         dot_list = [(dot[0], dot[1]) for dot in unprocess_dot_list]
-        return dot_list
+        reference_dot_list = [(dot[0], dot[1]) for dot in unprocess_reference_dot_list]
+        return reference_dot_list, dot_list
 
     def set_model_info(self, x, y):
         dot = (x, y)
@@ -35,5 +35,8 @@ class CanvasController(Controller):
 
     def run_window(self):
         self.window = CanvasWindow(self.daddy_window, self)
-        self.input_controller = InputCurveController(self.daddy_window, self.algorithm)
+        self.input_controller = DataCurveController(self, self.algorithm)
         self.window.run()
+
+    def update(self):
+        self.window.draw_curve()

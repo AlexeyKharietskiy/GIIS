@@ -5,9 +5,7 @@ class InputController(Controller):
         super().__init__()
         self.daddy_window = daddy_window
         self.output_window = None
-        self.window = None
         self.algorithm = algorithm
-        self.shape = None
 
     def run_window(self, *args):
         pass

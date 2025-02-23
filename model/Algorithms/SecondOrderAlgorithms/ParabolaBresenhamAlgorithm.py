@@ -3,33 +3,38 @@ from model.Dot import Dot
 
 
 class ParabolaBresenhamAlgorithm(Algorithm):
-    def compute_points(self, vertex: Dot, h: int):
+    def compute_points(self, vertex: Dot, p: int):
         dot_list = []
+        x0 = vertex.x
+        y0 = vertex.y
         x = 0
         y = 0
-        error = 0
-        h += y
+        Sd = (x + 1) ** 2 - 2 * p * (y + 1)
+        Sv = (x + 1) ** 2 - 2 * p * y
+        Sh = x ** 2 - 2 * p * (y + 1)
+        dot_list.extend(self.get_parabola_points(vertex, Dot(x0 + x, y0 + y)))
 
-        # Построение точек в первом квадранте
-        while y < h:  # Ограничиваем область построения
-            dot_list.extend(self.get_parabola_points(vertex, Dot(x + vertex.x, y + vertex.y)))
-            f1 = (error <= 0 or 2 * (error - x) - 1 <= 0)
-            f2 = (error >= 0 or 2 * error + 1 > 0)
-            if f1:
-                x += 1
-                error += 2*x + 1
-
-            if f2:
+        while y + y0 < 50:
+            if abs(Sh) - abs(Sv) <= 0:
+                if abs(Sd) - abs(Sh) < 0:
+                    x += 1
                 y += 1
-                error -= 1
+            else:
+                if abs(Sv) - abs(Sd) > 0:
+                    y += 1
+                x += 1
+
+            dot_list.extend(self.get_parabola_points(vertex, Dot(x+x0, y+y0)))
+            Sd = (x + 1) ** 2 - 2 * p * (y + 1)
+            Sv = (x + 1) ** 2 - 2 * p * y
+            Sh = x ** 2 - 2 * p * (y + 1)
 
         return dot_list
 
     @staticmethod
     def get_parabola_points(vertex, dot: Dot):
-        # Получаем две симметричные точки (для горизонтальной параболы)
         points = [
-            dot,  # Верхняя ветвь
-            Dot(2 * vertex.x - dot.x, dot.y)  # Нижняя ветвь
+            dot,
+            Dot(2 * vertex.x - dot.x, dot.y)
         ]
         return points

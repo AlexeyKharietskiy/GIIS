@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from view.InputWindows.InputWindow import InputWindow
+
+
 class InputHermiteWindow(InputWindow):
     def __init__(self, daddy_window, controller, dot):
         super().__init__(daddy_window, controller)
@@ -32,8 +34,8 @@ class InputHermiteWindow(InputWindow):
         try:
             self.dx = float(self.dx_entry.get())
             self.dy = float(self.dy_entry.get())
-            self.controller.get_dot_info((self.x, self.y, self.dx, self.dy))
             self.destroy()
+            self.controller.get_dot_info((self.x, self.y, self.dx, self.dy))
         except ValueError:
             messagebox.showerror("Ошибка", "Введите числовые значения для производных")
 
@@ -42,6 +44,3 @@ class InputHermiteWindow(InputWindow):
 
     def run(self):
         self.wait_window()
-
-
-

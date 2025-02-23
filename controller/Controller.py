@@ -5,7 +5,7 @@ import tkinter as tk
 class Controller(ABC):
     def __init__(self):
         self.window = None
-        self.model = None
+        self.shape = None
 
     @abstractmethod
     def get_model_info(self):

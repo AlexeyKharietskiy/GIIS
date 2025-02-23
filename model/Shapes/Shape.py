@@ -7,8 +7,15 @@ class Shape(ABC):
         self.algorithm = None
 
     @abstractmethod
-    def draw_dots(self, algorithm):
+    def compute_points(self, algorithm):
         pass
 
     def clear_dot_list(self):
         self.dot_list = []
+
+    def unique_dot_list(self):
+        unique_list = []
+        for dot in self.dot_list:
+            if dot not in unique_list:
+                unique_list.append(dot)
+        self.dot_list = unique_list
