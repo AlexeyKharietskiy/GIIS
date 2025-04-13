@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 class ShapeDrawWindow:
-    def __init__(self, shape, debug_mode, size=30):
-        self.shape = shape
+    def __init__(self, controller, debug_mode, size=30):
+        self.controller = controller
+        self.dot_list =src.controller.get_model_info()
         self.debug_mode = debug_mode
         self.current_index = -1
         self.fig, self.ax = plt.subplots(figsize=(6, 6))
@@ -17,11 +18,10 @@ class ShapeDrawWindow:
         manager = plt.get_current_fig_manager()
         manager.window.state('zoomed')
 
-
     def setup_window(self):
         self.restore_window()
         if not self.debug_mode:
-            self.create_image(len(self.shape.dot_list) - 1)
+            self.create_image(len(self.dot_list) - 1)
         else:
             self.create_image(self.current_index)
             self.fig.canvas.mpl_connect('key_press_event', lambda event: self.on_key(event))
@@ -30,9 +30,9 @@ class ShapeDrawWindow:
         image = np.ones((self.size, self.size))
 
         for i in range(current_index + 1):
-            dot = self.shape.dot_list[i]
-            if 0 <= dot.x < self.size and 0 <= dot.y < self.size:
-                image[self.size-1 - dot.y, dot.x] = 1 - dot.intensity
+            dot = self.dot_list[i]
+            if 0 <= dot[0] < self.size and 0 <= dot[1] < self.size:
+                image[self.size-1 - dot[1], dot[0]] = 1 - dot[2]
 
         self.ax.clear()
         self.ax.imshow(image, cmap='gray', vmin=0, vmax=1, extent=(0, self.size, 0, self.size))
@@ -52,7 +52,7 @@ class ShapeDrawWindow:
 
     def on_key(self, event):
         if event.key == ' ':
-            if self.current_index < len(self.shape.dot_list) - 1:
+            if self.current_index < len(self.dot_list) - 1:
                 self.current_index += 1
                 self.create_image(self.current_index)
             else:

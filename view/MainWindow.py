@@ -20,9 +20,9 @@ class MainWindow(tk.Tk):
         self.line_menu = Menu(self.menu_bar, tearoff=0)
         self.second_order_line_menu = Menu(self.menu_bar, tearoff=0)
         self.curve_menu = Menu(self.menu_bar, tearoff=0)
-        self.__paste_line_menu()
-        self.__paste_second_order_line_menu()
-        self.__paste_curve_menu()
+        self._paste_line_menu()
+        self._paste_second_order_line_menu()
+        self._paste_curve_menu()
 
         self.label = tk.Label(self, text="Добро пожаловать в графический редактор!"
                                          "\nВыберите тип фигуры и алгоритм для построения.",
@@ -49,32 +49,32 @@ class MainWindow(tk.Tk):
         self.center_window()
         self.mainloop()
 
-    def __paste_curve_menu(self):
-        self.curve_menu.add_radiobutton(label="Формы Эрмита",variable=self.algorithm,
-                                        command=lambda:self.controller.run_curve_input_window(self.algorithm.get()))
-        self.curve_menu.add_radiobutton(label="Формы Безье", variable=self.algorithm,
-                                        command=lambda:self.controller.run_curve_input_window(self.algorithm.get()))
-        self.curve_menu.add_radiobutton(label="В-сплайн", variable=self.algorithm,
-                                        command=lambda:self.controller.run_curve_input_window(self.algorithm.get()))
+    def _paste_curve_menu(self):
+        self.curve_menu.add_command(label="Формы Эрмита",
+                                        command=lambda:self.controller.run_shape_window("Кривые", "Формы Эрмита"))
+        self.curve_menu.add_command(label="Формы Безье",
+                                        command=lambda:self.controller.run_shape_window("Кривые", "Формы Безье"))
+        self.curve_menu.add_command(label="В-сплайн",
+                                        command=lambda:self.controller.run_shape_window("Кривые", "В-сплайн"))
         self.menu_bar.add_cascade(label="Кривые", menu=self.curve_menu)
 
-    def __paste_line_menu(self):
-        self.line_menu.add_radiobutton(label="Алгоритм ЦДА", variable=self.algorithm,
-                                       command=lambda:self.controller.run_line_input_window(self.algorithm.get()))
-        self.line_menu.add_radiobutton(label="Алгоритм Брезенхема", variable=self.algorithm,
-                                       command=lambda:self.controller.run_line_input_window(self.algorithm.get()))
-        self.line_menu.add_radiobutton(label="Алгоритм Ву", variable=self.algorithm,
-                                       command=lambda:self.controller.run_line_input_window(self.algorithm.get()))
+    def _paste_line_menu(self):
+        self.line_menu.add_command(label="Алгоритм ЦДА",
+                                       command=lambda:self.controller.run_shape_window("Отрезки", "Алгоритм ЦДА"))
+        self.line_menu.add_command(label="Алгоритм Брезенхема",
+                                       command=lambda:self.controller.run_shape_window("Отрезки", "Алгоритм Брезенхема"))
+        self.line_menu.add_command(label="Алгоритм Ву",
+                                       command=lambda:self.controller.run_shape_window("Отрезки", "Алгоритм Ву"))
         self.menu_bar.add_cascade(label="Отрезки", menu=self.line_menu)
 
-    def __paste_second_order_line_menu(self):
-        self.second_order_line_menu.add_radiobutton(label="Окружность", variable=self.algorithm,
-                                                    command=lambda:self.controller.run_circle_input_window(self.algorithm.get()))
-        self.second_order_line_menu.add_radiobutton(label="Эллипс", variable=self.algorithm,
-                                                    command=lambda:self.controller.run_ellipse_input_window(self.algorithm.get()))
-        self.second_order_line_menu.add_radiobutton(label="Гипербола", variable=self.algorithm,
-                                                    command=lambda:self.controller.run_hyperbola_input_window(self.algorithm.get()))
-        self.second_order_line_menu.add_radiobutton(label="Парабола", variable=self.algorithm,
-                                                    command=lambda:self.controller.run_parabola_input_window(self.algorithm.get()))
+    def _paste_second_order_line_menu(self):
+        self.second_order_line_menu.add_command(label="Окружность",
+                        command=lambda:self.controller.run_shape_window("Линии второго порядка", "Окружность"))
+        self.second_order_line_menu.add_command(label="Эллипс",
+                        command=lambda:self.controller.run_shape_window("Линии второго порядка", "Эллипс"))
+        self.second_order_line_menu.add_command(label="Гипербола",
+                        command=lambda:self.controller.run_shape_window("Линии второго порядка", "Гипербола"))
+        self.second_order_line_menu.add_command(label="Парабола",
+                        command=lambda:self.controller.run_shape_window("Линии второго порядка", "Парабола"))
         self.menu_bar.add_cascade(label="Линии второго порядка", menu=self.second_order_line_menu)
 

@@ -1,6 +1,7 @@
 import tkinter
 from tkinter.font import Font
 
+
 class Window(tkinter.Toplevel):
     def __init__(self, daddy_window, controller, *args):
         super().__init__(daddy_window)
