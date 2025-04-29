@@ -1,5 +1,5 @@
 from src.model.Algorithms.Algorithm import Algorithm
-from src.model.Dot import Dot
+from src.model.Shapes.Dot.dot import Dot
 
 
 class HyperbolaBresenhamAlgorithm(Algorithm):

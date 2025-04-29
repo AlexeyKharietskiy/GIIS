@@ -1,4 +1,4 @@
-from src.model.Dot import Dot
+from src.model.Shapes.Dot.dot import Dot
 from abc import ABC, abstractmethod
 
 

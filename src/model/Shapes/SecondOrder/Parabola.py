@@ -1,6 +1,6 @@
 from src.model.Shapes.Shape import Shape
 from src.model.Algorithms.SecondOrderAlgorithms.ParabolaBresenhamAlgorithm import ParabolaBresenhamAlgorithm
-from src.model.Dot import Dot
+from src.model.Shapes.Dot.dot import Dot
 
 
 class Parabola(Shape):

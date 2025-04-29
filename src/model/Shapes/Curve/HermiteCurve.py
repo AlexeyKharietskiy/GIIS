@@ -1,5 +1,5 @@
 from src.model.Shapes.Curve.СurveSegment import CurveSegment
-from src.model.InterpolationDot import InterpolationDot
+from src.model.Shapes.Dot.InterpolationDot import InterpolationDot
 from  logger import logger
 from src.model.Shapes.Curve.Curve import Curve
 

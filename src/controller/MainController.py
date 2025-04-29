@@ -1,3 +1,4 @@
+from src.controller.geom_refactoring.controller import GeomRefactorController
 from src.controller.Curve.CurveController import CurveController
 from src.controller.Line.LineController import LineController
 from src.controller.SecondOrder.SecondOrderLineController import SecondOrderLineController
@@ -10,7 +11,8 @@ class MainController:
         self._shape_dict = {
             "Кривые": CurveController,
             "Отрезки": LineController,
-            "Линии второго порядка": SecondOrderLineController
+            "Линии второго порядка": SecondOrderLineController,
+            "Геометрические преобразования": GeomRefactorController
             }
         self.controller = None
 

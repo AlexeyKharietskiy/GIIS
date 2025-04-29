@@ -1,5 +1,5 @@
 from src.model.Shapes.Shape import Shape
-from src.model.Dot import Dot
+from src.model.Shapes.Dot.dot import Dot
 from src.model.Algorithms.LineAlgorithms.LineBresenhamAlgorithm import BresenhamAlgorithm
 from src.model.Algorithms.LineAlgorithms.DDAAlgorithm import DDAAlgorithm
 from src.model.Algorithms.LineAlgorithms.WuAlgorithm import WuAlgorithm

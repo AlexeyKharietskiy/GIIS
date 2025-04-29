@@ -1,6 +1,6 @@
 from src.model.Shapes.Shape import Shape
 from src.model.Algorithms.SecondOrderAlgorithms.CircleBresenhamAlgorithm import CircleBresenhamAlgorithm
-from src.model.Dot import Dot
+from src.model.Shapes.Dot.dot import Dot
 
 class Circle(Shape):
     def __init__(self, center_dot, radius):

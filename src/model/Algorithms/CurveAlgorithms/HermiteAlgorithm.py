@@ -1,4 +1,4 @@
-from src.model.InterpolationDot import InterpolationDot, Dot
+from src.model.Shapes.Dot.InterpolationDot import InterpolationDot, Dot
 from src.model.Algorithms.Algorithm import Algorithm
 
 
