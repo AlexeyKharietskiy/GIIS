@@ -1,7 +1,7 @@
 import numpy as np
-from src.model.Algorithms.Transformations3d.matrix_factory import MatrixFactory
-from src.factories.volume_refactoring import VolumeRefactoringFactory
-from src.controller.Controller import Controller
+from src.model.algorithms.volume_refactoring.matrix_factory import MatrixFactory
+from src.controller.geom_refactoring.factory import VolumeRefactoringFactory
+from src.controller.abstract_controller import Controller
 
 
 class GeomRefactorController(Controller):

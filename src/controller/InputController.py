@@ -1,4 +1,4 @@
-from src.controller.Controller import Controller
+from src.controller.abstract_controller import Controller
 
 class InputController(Controller):
     def __init__(self, daddy_window, algorithm):

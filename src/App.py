@@ -1,4 +1,4 @@
-from src.controller.MainController import MainController
+from src.controller.app_controller import MainController
 
 class App:
     def __init__(self):
