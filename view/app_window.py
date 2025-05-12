@@ -153,7 +153,14 @@ class MainWindow(tk.Tk):
             label='Холст',
             command=lambda:self.controller.run_shape_window(
                 'Полигон',
-                'Полигон'
+                'Построение'
+            )
+        )
+        self.polygon_menu.add_command(
+            label='Заполнение',
+            command=lambda:self.controller.run_shape_window(
+                'Полигон',
+                'Заполнение'
             )
         )
         self.menu_bar.add_cascade(

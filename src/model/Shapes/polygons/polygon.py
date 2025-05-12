@@ -9,6 +9,8 @@ class Polygon:
     def __init__(self, points: list[Dot]):
         self.points = points
         self.internal_normals = None
+        self.seed = None
+        self.filled = False
         self.sides = [
             (
                 self.points[i],
