@@ -1,3 +1,4 @@
+from src.controller.triangulation.controller import TriangulationController
 from src.controller.polygon.controller import PolygonController
 from src.controller.geom_refactoring.controller import GeomRefactorController
 from src.controller.curve.controller import CurveController
@@ -15,6 +16,7 @@ class MainController:
             "Линии второго порядка": SecondOrderLineController,
             "Геометрические преобразования": GeomRefactorController,
             "Полигон": PolygonController,
+            "Триангуляция": TriangulationController,
             }
         self.controller = None
 

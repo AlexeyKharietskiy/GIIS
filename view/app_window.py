@@ -22,12 +22,14 @@ class MainWindow(tk.Tk):
         self.curve_menu = Menu(self.menu_bar, tearoff=0)
         self.volume_refactoring_menu = Menu(self.menu_bar, tearoff=0)
         self.polygon_menu = Menu(self.menu_bar, tearoff=0)
+        self.triangulation_menu = Menu(self.menu_bar, tearoff=0)
         
         self._paste_line_menu()
         self._paste_second_order_line_menu()
         self._paste_curve_menu()
         self._paste_volume_refactoring_menu()
         self._paste_polygon_menu()
+        self._paste_triangulation_menu()
 
         self.label = tk.Label(
             self, 
@@ -166,6 +168,26 @@ class MainWindow(tk.Tk):
         self.menu_bar.add_cascade(
             label='Полигон', 
             menu=self.polygon_menu,
+        )
+        
+    def _paste_triangulation_menu(self):
+        self.triangulation_menu.add_command(
+            label='Вороной',
+            command=lambda:self.controller.run_shape_window(
+                'Триангуляция',
+                'Вороной'
+            )
+        )
+        self.triangulation_menu.add_command(
+            label='Делоне',
+            command=lambda:self.controller.run_shape_window(
+                'Триангуляция',
+                'Делоне'
+            )
+        )
+        self.menu_bar.add_cascade(
+            label='Триангуляция', 
+            menu=self.triangulation_menu,
         )
 
 
